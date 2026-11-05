@@ -1,0 +1,15 @@
+# Explicit publication allowlist. Review before adding further files.
+/*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/assets/
+/assets/*
+!/assets/demo/
+!/assets/figures/
+/assets/demo/*
+!/assets/demo/reaching-balance-500k.gif
+!/assets/demo/reaching-balance-500k.mp4
+/assets/figures/*
+!/assets/figures/survival-comparison.png
+!/assets/figures/action-ranking.png
