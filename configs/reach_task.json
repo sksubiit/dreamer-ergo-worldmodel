@@ -1,0 +1,19 @@
+{
+  "name": "ergocub_balance_left_reach_v0",
+  "max_steps": 500,
+  "target_offset": [0.05, 0.0, 0.0],
+  "training_target_jitter": [0.0, 0.01, 0.01],
+  "success_distance": 0.03,
+  "success_hold_seconds": 0.5,
+  "fall_height_fraction": 0.65,
+  "fall_upright_cosine": 0.5,
+  "nonfoot_clearance": 0.01,
+  "height_width": 0.1,
+  "reach_width": 0.05,
+  "balance_weight": 1.0,
+  "reach_weight": 2.0,
+  "effort_cost": 0.01,
+  "action_change_cost": 0.01,
+  "base_speed_cost": 0.1,
+  "fall_penalty": 1.0
+}

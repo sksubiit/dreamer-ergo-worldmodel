@@ -1,0 +1,23 @@
+ergoCubSN001 robot model and its referenced meshes
+Source: https://github.com/mesh-iit/ergocub-software
+Revision: 6c255e258cd184e91765b607222b6b6877bf7459
+URDF: urdf/ergoCub/robots/ergoCubSN001/model.urdf
+Copyright (c) 2022, iCub Tech. All rights reserved.
+License: BSD-3-Clause; the complete upstream notice is in LICENSE.
+
+The source URDF and all 67 mesh files are copied byte-for-byte. provenance.json
+records upstream paths and SHA-256 digests. No mesh or XML from the private RL
+study is included in this directory. The source ROS package.xml has an unfinished
+license field; the repository root LICENSE supplies BSD-3-Clause and no separate
+asset-specific license was found in the inspected source tree.
+
+Runtime adaptation, not modifications to the stored URDF: MuJoCo native importer;
+30 wrist/finger joints fixed at zero; 27 other scalar joints retained; floating
+root added; visual geometry retained; original inertials and collision shapes
+imported. Named sole/palm sites, ground and 23 experimental position servos are
+added by project code. Servo settings are not official model/hardware ratings.
+The runtime stance adaptation removes mesh collision elements and retains only
+the four original sole-pad boxes, keeping SN001 inertials unchanged. Unlike the
+upstream Gazebo minContacts variant, no surrogate link inertias are substituted.
+This adaptation has no self or body-ground collisions. A task must terminate on
+falling before body-ground impact is expected. Stored source files are unchanged.

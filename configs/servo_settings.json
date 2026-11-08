@@ -1,0 +1,13 @@
+{
+  "provenance": "Experimental servo settings used by the published simulation baseline; not official hardware ratings.",
+  "kp": 25.26618726534444,
+  "kd": 2.01061929824,
+  "armature": 0.01,
+  "groups": [
+    {"effort_limit": 60.0, "joints": ["l_hip_pitch", "l_hip_roll", "l_hip_yaw", "l_ankle_pitch", "r_hip_pitch", "r_hip_roll", "r_hip_yaw", "r_ankle_pitch"]},
+    {"effort_limit": 110.0, "joints": ["l_knee", "r_knee"]},
+    {"effort_limit": 17.0, "joints": ["l_ankle_roll", "r_ankle_roll"]},
+    {"effort_limit": 20.0, "joints": ["l_shoulder_pitch", "l_shoulder_roll", "l_shoulder_yaw", "l_elbow", "r_shoulder_pitch", "r_shoulder_roll", "r_shoulder_yaw", "r_elbow"]},
+    {"effort_limit": 20.0, "joints": ["torso_pitch", "torso_roll", "torso_yaw"]}
+  ]
+}

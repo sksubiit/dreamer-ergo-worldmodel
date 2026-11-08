@@ -1,0 +1,355 @@
+{
+  "repository": "https://github.com/mesh-iit/ergocub-software",
+  "revision": "6c255e258cd184e91765b607222b6b6877bf7459",
+  "model": "ergoCubSN001",
+  "license": "BSD-3-Clause",
+  "license_scope": "Repository root LICENSE; no more-specific asset license found. ROS package.xml has a TODO license field.",
+  "files": [
+    {
+      "path": "model.urdf",
+      "source_path": "urdf/ergoCub/robots/ergoCubSN001/model.urdf",
+      "sha256": "48ba4c16af7c3aefd504aa172c1f4fe92c137aaa7131ce49d7144b383cc23ba8"
+    },
+    {
+      "path": "LICENSE",
+      "source_path": "LICENSE",
+      "sha256": "60a113652ca748dfd185fa2b573f74079db2e820d6801bafffda83cdabb422d5"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_chest_wo_neck.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_chest_wo_neck.stl",
+      "sha256": "320285a2417d9b88dc7e2c6f178694c94b1fee84f8d25284a3df72a38b716d89"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_head.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_head.stl",
+      "sha256": "b8e5243c7010d3c7c2df70220a852af277d91a2968b1ffd7c79a561d2587e4e6"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_ankle_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_ankle_1.stl",
+      "sha256": "18668d753380658b10cb2bb868ecee0c2eaa466a2ad4f7a1137c0dc8b19b8adc"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_ankle_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_ankle_2.stl",
+      "sha256": "9a171399b00347fd0addcb2906447e315d3ed2b964912b6973155467e2759d76"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_foot_front.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_foot_front.stl",
+      "sha256": "50d10432f98be6241f1394aaa87ad8c89629b38ab42145b2a72f0d9bf34f8b26"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_foot_rear.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_foot_rear.stl",
+      "sha256": "02d2b00ec1cda965f9e1276f6af67eb6a2482e96709f4c33acdcdfeecf4c76b8"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_forearm.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_forearm.stl",
+      "sha256": "dee66dffa0f10ee89ada4c37745f02f8b2dfb6f9270576587673f14e6fb76fd7"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_index_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_index_1.stl",
+      "sha256": "bcf91ad60dc8f6b4832a01db6136821b265bb75199ed4521fb02dbc64ad809c3"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_index_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_index_2.stl",
+      "sha256": "78c9d17923fef47bbf6e1de8a820a86c6def49ac9272e389ca3487815ec7ffe7"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_index_3.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_index_3.stl",
+      "sha256": "787ae6f526fae059638f58ee479de3b71a6aded29fadf90b5852a1c721690032"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_middle_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_middle_1.stl",
+      "sha256": "a1e2af77be50f353fe045ace8d132d182eb46d237e64ec8dba686962b04a5bb1"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_middle_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_middle_2.stl",
+      "sha256": "307361f039eb4f815a52829900f9d2e6b044721e0d477490c89a447146c88d55"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_palm.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_palm.stl",
+      "sha256": "29c41300021b204ceb9298f01cf6fbb95b2676daa153fdad09b4bbbcff5bad5d"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_pinkie_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_pinkie_1.stl",
+      "sha256": "8994f8655f0c4d7c13c34a84d1e66bd401cdbf20481fd3a68ebbcf60de5dc55e"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_pinkie_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_pinkie_2.stl",
+      "sha256": "856036af326a2033d829b1215f9ef38cb8fda0f22294e7e27abff17ec77fbc35"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_ring_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_ring_1.stl",
+      "sha256": "a8c7082ff70bcec2cd40d999cd65eedaf095dd9544f02493f6cbf592d539f3b8"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_ring_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_ring_2.stl",
+      "sha256": "43b54e7f2dad74e41c18abca5c916a0eba41ab4a3cb5c003c2c2d89b080caf5d"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_thumb_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_thumb_1.stl",
+      "sha256": "c2db0a0a22dd63f9f9b5a858b2381b890c68abced22aadef0db2f7693b9b3ed3"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_thumb_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_thumb_2.stl",
+      "sha256": "4432eca7e7fc69dc7a1a9f7cb9aff0095265433e805ea4860036ffba4bd767ff"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hand_thumb_3.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hand_thumb_3.stl",
+      "sha256": "5a0e0f5ce8fa26b3245dc8f296a14a5dc33365b3a0ac1beb7a367ba71d9616b5"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hip_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hip_1.stl",
+      "sha256": "0e2f994fbe9509bbeb29dd04934934254f9464e491b3ac7f0f0ca0e8fd1453fd"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hip_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hip_2.stl",
+      "sha256": "bceb8d06d010b1230e6fba38bc361a21541c83c9af88029388f4955169b84b3f"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_hip_3.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_hip_3.stl",
+      "sha256": "523dae2817aeaa6fdc8a27f64ea48aa1f82e0e86d4db886f4283f31a1081e614"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_lower_leg.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_lower_leg.stl",
+      "sha256": "b85f9c94c3812928ee26fe35eda1f8c38ec207670b99bc74c966e75251649413"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_shoulder_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_shoulder_1.stl",
+      "sha256": "c09cad161a280c491f94321b1a9dd4885c25d4f02b7b77cc04c45ee82413a848"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_shoulder_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_shoulder_2.stl",
+      "sha256": "d6b0f082772de080a13613d72379672e8a768a56c8ee89a27776ae3d707cae9f"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_shoulder_3.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_shoulder_3.stl",
+      "sha256": "ef1240d9bcce8b9b5ed8a59d14c275ab1bdfc5766cea87e9fe92f107f746f2af"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_upper_leg.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_upper_leg.stl",
+      "sha256": "be68ff85ffb54860273ca8414ead40b49e9b3bfc6206c72d1866eeed8186505a"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_upperarm.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_upperarm.stl",
+      "sha256": "852865143de2498ca57808c2d1813b99685fbff4390ed5e357d1efadd8f1425a"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_wrist_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_wrist_1.stl",
+      "sha256": "0856468a0c2edf3b9614a67e451b651c4877425dfa3b01ae2a40fee0b5b80e09"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_l_wrist_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_l_wrist_2.stl",
+      "sha256": "268b93f79289a4fecd1a91ae4c2ed575c4f5ca943c18c42718fd24eaa5b59dd2"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_ankle_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_ankle_1.stl",
+      "sha256": "5d3b4a770dddd029d57919ffa3ffe275c0ecfb3472693346f8d64a59eaec825f"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_ankle_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_ankle_2.stl",
+      "sha256": "97240be3759e7d059d08fb965ece9b3b16dca6f048cc9425a01c6b0cf46668b9"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_foot_front.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_foot_front.stl",
+      "sha256": "bf5b3531a1413d631f998590273377d4ce944a9c19fa2d84ed83104e32610aba"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_foot_rear.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_foot_rear.stl",
+      "sha256": "db2ef9d8766358ee50461a829cb8ad9cac7bbab1b67abef808fe85eafc3f5cd0"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_forearm.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_forearm.stl",
+      "sha256": "31a42970ff5bb361e36bfb749cb2e7c964d8f0c5c9b608b6c9ec33c9ebd6a1bd"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_index_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_index_1.stl",
+      "sha256": "3dbe0e3e4371ca8bd9a565c80cd03b4ea42d4ba333ca7c494edfa898db1e2856"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_index_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_index_2.stl",
+      "sha256": "a8f5909e931dce82b52f4d66caead5b6075fb17e2c3b7159377b6b376e5ab5a7"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_index_3.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_index_3.stl",
+      "sha256": "402c308bb8281619725139c14fd5f56c1b0ee8dfacc50bb648126e7340d0c62e"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_middle_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_middle_1.stl",
+      "sha256": "da7004c0f5dc69b073e62bc63cf8a96bcef47985c9c01d0fd1a53bc8198d45b8"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_middle_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_middle_2.stl",
+      "sha256": "44b3c43055e7bcf0f7ae3a77be268f42478f4064debd383a75ef23bdaac1b0d4"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_palm.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_palm.stl",
+      "sha256": "c9a974a161d2cb48eda97a5a13182531364d7e33794dbeaa133a635982b0d303"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_pinkie_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_pinkie_1.stl",
+      "sha256": "e216eb34002d8a2d2a91441008f9de9aa5d0711f618a858ca244d9dc74338da1"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_pinkie_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_pinkie_2.stl",
+      "sha256": "3961b86fe0b0d0f03736e731fa9cfc0a79bb490f290431f52bea0090dcf0eede"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_ring_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_ring_1.stl",
+      "sha256": "be7b05b573e88baaebfae74feb379661c7a3facc5da65218326bd5436f8ce974"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_ring_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_ring_2.stl",
+      "sha256": "fdfc66635db7836ad44a1b44651060c7ea799db473eb25bf54245d52f702c080"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_thumb_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_thumb_1.stl",
+      "sha256": "d4b3a8b1859d57e3cd77d41683e5afd0a4509763119c35a263eca066aaaac93a"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_thumb_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_thumb_2.stl",
+      "sha256": "1f618ae50f1d51bc1aa0f76f51962d6778dbec9e89e69d2fc4900ae96a496658"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hand_thumb_3.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hand_thumb_3.stl",
+      "sha256": "b3ac5ebbc970a8cca4451ec63f45914e18e5646506e5e6483003983b814bc97f"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hip_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hip_1.stl",
+      "sha256": "c22e6d7c605aea19a24e5037047dfd0fd4b9c8342e75839255b5babf5dcdfba4"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hip_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hip_2.stl",
+      "sha256": "cd50b4125a8ce93470afb71be35da558d66fdb17815e5171e1e458c8606eae21"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_hip_3.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_hip_3.stl",
+      "sha256": "87845e4fee3649fb95ffb5dc304e9da41a3241aaf1f3b3b7dc8b9ab5fd784144"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_lower_leg.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_lower_leg.stl",
+      "sha256": "90ce347e9587a9f5c36d9570b96f8de7087e009cd7886f064903af1ae9cf1ddd"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_shoulder_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_shoulder_1.stl",
+      "sha256": "c6233f30bdae59c9d30206618618077db1a6ba567d48dab92c76a6962a2e3094"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_shoulder_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_shoulder_2.stl",
+      "sha256": "c2faf9a8040d21f774538f1b11b6467ffad61eade82e0dc312bea1ed37ff7fee"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_shoulder_3.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_shoulder_3.stl",
+      "sha256": "33346f341502b4f77ba1ae44aabf9e33521a6c6a5a166ffbd23c5f9f0fbd25a3"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_upper_leg.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_upper_leg.stl",
+      "sha256": "c5ea518e6f040b34a03bd27ae4c6396281570a6464b4c9be12e71773b732b0d3"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_upperarm.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_upperarm.stl",
+      "sha256": "8c1673a77429a9ed6fe1ac6e259cda47bf50a0c6ed6072aad0e0e3764c3d0717"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_wrist_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_wrist_1.stl",
+      "sha256": "366968f47e156a69300a9613152dc3b5f451debb302bde8a0a7aff0196e97b29"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_r_wrist_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_r_wrist_2.stl",
+      "sha256": "23f8951ddd6353281bb37a05ae36abdab113e7b4c43da57ab6d7caf22531ffb2"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_realsense.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_realsense.stl",
+      "sha256": "15b8bb7802f051d7914367c32b74366f9056658d11482351af818fcc6eb4a33c"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_root_link.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_root_link.stl",
+      "sha256": "8956d5333d0866c88330eb609f3706a37e940e349815c2df64545873cf816922"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_torso_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_torso_1.stl",
+      "sha256": "63c5974ac8614d038d6de00c7647172be71a5c5f6fd19338fc3fad0269c442bd"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-1_torso_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-1_torso_2.stl",
+      "sha256": "618a68a031746ca3f5c7fb70d4fa2aba034a989cad370971324bed884aae4305"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-3_head_neck_1.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-3_head_neck_1.stl",
+      "sha256": "a0abd81956834ca9b900009ebe295e5fa0c324b30fbfa37b5905f9c0f15fff4a"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-3_head_neck_2.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-3_head_neck_2.stl",
+      "sha256": "6779c565716efab8e21f9a4b85d89f27661770d173e5d1129e13167168083950"
+    },
+    {
+      "path": "meshes/simmechanics/sim_ecub_1-3_head_neck_3.stl",
+      "source_path": "urdf/ergoCub/meshes/simmechanics/sim_ecub_1-3_head_neck_3.stl",
+      "sha256": "67c07db113be190747a88540dfa43f0ca0fb6e6f673f6de564fb70ea4f3099fb"
+    }
+  ],
+  "collision_scope": "Source URDF intact. Runtime stance adaptation retains only its four sole-pad box collisions; no self/body-ground collisions. Terminate falls before impact."
+}

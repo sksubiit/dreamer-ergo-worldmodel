@@ -1,128 +1,143 @@
-# Dreamer-ergo-worldmodel
+# DreamerV3 for ergoCub
 
-**Learning humanoid reaching and stabilization through world models.**
+Empirical investigation of DreamerV3, proprioception-dominant humanoid
+control, and learned world models for a standard ergoCubSN001 in MuJoCo.
 
 [![Standard ergoCub reaching and stabilization in MuJoCo](assets/demo/reaching-balance-500k.gif)](assets/demo/reaching-balance-500k.mp4)
 
-*An existing evaluation recording of the unchanged 500k policy: the first
-completed episode, selected by episode order, reaches the target and survives
-to the 10-second cap. This illustrative successful episode is not a performance
-estimate; failures are included in the comparisons below. [Full MP4](assets/demo/reaching-balance-500k.mp4).*
+The repository contains the public implementation surface, selected figures,
+and a frozen record of results.
 
-## Overview
+## Research system
 
-DreamerV3 learns a compact model of how observations evolve under actions. It
-uses this model to imagine trajectories, estimate future returns, and train an
-actor–critic policy before applying actions in the simulator.
+The task combines left-palm reaching with whole-body stabilization. The
+environment exposes a 90-dimensional proprioceptive and task-state vector and
+23 normalized joint position-reference actions at 50 Hz. The physics adapter
+builds the standard ergoCubSN001 URDF, preserves its inertial model, uses the
+four original sole-pad collision boxes, and applies the recorded experimental
+servo settings. No pretrained humanoid controller supplies the behavior.
 
-This POC uses the [official HumanoidBench DreamerV3 implementation](https://github.com/carlosferrazza/humanoid-bench/tree/cb1189039151c8aadaaa987b442da54383c87fab/dreamerv3)
-with a custom standard **ergoCubSN001** reaching-and-balance task in MuJoCo.
-The policy issues 23 joint-level position-reference commands at 50 Hz. The task
-combines left-palm reaching with whole-body stabilization; no pretrained
-humanoid controller supplies the behavior. The nominal target is 5 cm ahead of
-the initial left palm. These are task-specific POC results, not HumanoidBench
-benchmark scores. This repository contains selected
-results and media, not the training implementation or reproducibility package.
+DreamerV3 encodes observations into a recurrent state-space model (RSSM). The
+RSSM combines a deterministic recurrent state with a stochastic latent state,
+predicts observation and reward consequences under actions, and supports
+imagination without stepping MuJoCo. An actor and critic are trained on
+imagined trajectories; the actor selects actions and the critic estimates
+future return. This is a model-based reinforcement-learning study, not a claim
+that the latent state is a complete physical model.
 
-## Experimental results
+The upstream DreamerV3 source is pinned to HumanoidBench revision
+`cb1189039151c8aadaaa987b442da54383c87fab`. The public launcher verifies that
+revision before constructing an agent. The robot model and meshes are copied
+from ergoCub software revision
+`6c255e258cd184e91765b607222b6b6877bf7459`, with its BSD-3-Clause notice
+retained under `assets/ergocub/`.
 
-All step counts are total driver steps. The following comparison uses **50
-matched completed episodes per frozen policy, policy seeds 50–99**, identical
-nominal resets, stochastic actions with independently reset policy RNG/carry,
-and a 10-second episode cap.
+## Frozen results
 
-| Metric | 300k | DreamerV3 500k | Prior10 500k |
-|---|---:|---:|---:|
-| Mean survival, capped at 10 s | 4.45 s | 7.74 s | 8.43 s |
-| Qualified reaching success | 100% | 100% | 100% |
-| Survived to 10 s | 0% | 42% | 56% |
+These are verified results from one training seed and matched frozen-policy
+evaluation cohorts. They are reported for Empirical traceability, not as
+generalization, safety, or continual-learning claims.
 
-Qualified success requires the palm within 3 cm of the target for 0.5 continuous
-seconds, root tilt below 20 degrees, and root height above 90% of its reset
-height. It is an
-episode-level event, not proof of continuous reaching or balance afterward.
-Episodes stopped at 10 seconds are right-censored for longer-term survival.
+| Policy and total driver steps | Mean survival, capped at 10 s | Reached target | Survived to 10 s |
+| --- | ---: | ---: | ---: |
+| DreamerV3, 300k | 4.45 s | 100% | 0% |
+| DreamerV3, 500k | 7.74 s | 100% | 42% |
+| Prior10, 500k | 8.43 s | 100% | 56% |
+
+The primary 50-episode comparison used matched policy seeds 50–99. In a
+separate 200-episode panel (seeds 100–299), 500k control/Prior10 mean survival
+was 8.256/8.606 s, with 47.0%/63.5% surviving to 10 s. The paired mean
+difference was +0.350 s with 95% CI [-0.068, 0.770], so a mean-survival
+advantage was not established. Prior10 also changed the failure distribution:
+leftward falls increased from 1.0% to 21.5% in that panel.
+
+The Prior10 intervention adds a 0.1-weighted, ten-step open-loop prior loss to
+the world-model heads using recorded actions. It leaves the upstream network
+and optimizer structure unchanged. In the 50-seed comparison, Prior10 minus
+unchanged 500k was +0.69 s, 95% CI [-0.24, 1.63], and held-out action-ranking
+agreement was 10/10 for Prior10 versus 1/10 for unchanged 500k. This small
+open-loop diagnostic did not establish reliable action ranking or calibrated
+values.
+
+The Prior10 continuation was evaluated at 600k, 700k, 800k, 900k, and 1M
+total steps on the reused 200-seed panel. Mean capped survival was respectively
+9.339, 5.248, 7.732, 8.784, and 8.086 s. The 1M value remained censored by the
+10-second cap and does not establish indefinite balance. These continuation
+results require unavailable checkpoints and replay; they are not reproducible
+from this checkout alone.
+
+## Experiment 1: latent representation analysis
+
+Experiment 1 is complete as a frozen-model analysis. It probes the RSSM latent
+representation for information relevant to proprioceptive state, contact,
+uprightness, reaching, and fall-related outcomes, while separating analysis
+from policy training. Its private checkpoint- and trajectory-level artifacts
+are intentionally not redistributed. The public code preserves the model,
+physics, and evaluation interfaces needed for a future independently packaged
+analysis. Experiment 2 remains ongoing and is not included.
 
 ![Matched survival, qualified dwell, and paired episode outcomes](assets/figures/survival-comparison.png)
 
-*The same 50-seed cohort: survival curves, longest qualified dwell versus survival,
-and paired control/Prior10 outcomes. Control is unchanged DreamerV3. Both 500k
-branches continued from the same 300k learning state.*
+![Frozen-model action-ranking diagnostic](assets/figures/action-ranking.png)
 
-Unchanged training from 300k to 500k increased mean capped survival by **3.29 s**
-(paired seed-bootstrap 95% CI **[2.54, 4.03]**). Prior10 minus unchanged 500k was
-**+0.69 s [−0.24, 1.63]**, leaving its additional mean-survival benefit uncertain.
+The figures are unchanged selected exports from the frozen evaluations. A
+qualified reaching event means the palm is within 3 cm of the target for 0.5 s,
+with root tilt below 20 degrees and root height above 90% of reset height.
 
-### Separate expanded validation
+## Reproducibility boundary
 
-An independent cohort of **200 new matched policy seeds, 100–299**, compared
-only the frozen 500k policies under the same conditions. These results are not
-pooled with the preceding 50 episodes.
+**Reproducible from this repository:** asset hashes and URDF references,
+physics construction, reset and actuator checks, environment interfaces,
+Prior10 loss unit tests, and JSONL-to-TensorBoard conversion tests. These are
+lightweight checks and do not perform training or optimizer updates.
 
-| Metric | DreamerV3 500k | Prior10 500k |
-|---|---:|---:|
-| Mean survival, capped at 10 s | 8.26 s | 8.61 s |
-| Survived to 10 s | 47% | 63.5% |
-| Qualified reaching success | 100% | 100% |
-| Leftward falls, fraction of all episodes | 1% | 21.5% |
+**Reproducible analysis with external inputs:** frozen-policy evaluation,
+latent probes, action-ranking diagnostics, and result figures require the
+corresponding checkpoints, replay or trajectory files, and analysis scripts.
+Those private artifacts are deliberately absent.
 
-The paired mean-survival difference was **+0.350 s, 95% CI [−0.068, 0.770]**:
-**a mean-survival advantage is not statistically established**. The 10-second
-completion difference was **+16.5 percentage points [8.0, 25.0]**, supporting an
-advantage at that cap. Rearward falls decreased (48% to 12.5%), while leftward
-falls increased by **20.5 percentage points [15.0, 26.5]**. Intervals use matched
-seed-pair bootstrap resampling and are not adjusted for multiple endpoints.
+**Not claimed:** a fresh training reproduction, independent-seed uncertainty,
+hardware transfer, disturbance robustness, self-collision handling, or
+long-horizon stability. The simplified contact model and the 10-second cap are
+important limitations.
 
-## Research hypothesis: Prior10
+## Setup and checks
 
-The experimental Prior10 branch adds **0.1-weighted supervision of 10-step
-open-loop prior predictions** against recorded observations, rewards, and
-continuation. The hypothesis is that more reliable imagined dynamics can improve
-the decisions used for balance. This auxiliary objective is an intervention,
-not part of the unchanged upstream DreamerV3 baseline.
+Install the pinned physics requirements for asset-only checks:
 
-![Frozen model action-ranking accuracy on ten held-out states](assets/figures/action-ranking.png)
+```bash
+python3 -m pip install -r configs/physics_requirements.in
+PYTHONPATH=scripts python3 scripts/verify_assets.py
+PYTHONPATH=scripts python3 scripts/validate_physics.py --output /tmp/ergocub-physics --no-render
+```
 
-*Held-out diagnostic seeds 10–19: three predefined ankle-pitch interventions at
-each of ten shared physical states. Imagined-score best-action agreement with
-the physics-grounded ordering was 7/10, 1/10, and 10/10 for 300k, unchanged 500k, and Prior10,
-respectively. Observed-state scores use physics observations with the same
-model's critic; this small open-loop diagnostic does not establish general
-action-ranking reliability. Prediction calibration remained mixed.*
+The physics validator intentionally reports exit status 2 when the unchanged
+nominal hold falls; its geometry, reset, actuator-limit, and pulse checks still
+record the measured failure and are the expected lightweight baseline result.
 
-## Limitations and next evaluation
+For Dreamer checks, obtain the pinned upstream HumanoidBench checkout at
+`vendor/humanoid-bench` and make its `dreamerv3` directory available as shown
+by the launcher. Install `configs/dreamer_requirements.lock`, then run:
 
-- One training seed per branch, with a shared 300k ancestor; policy-sampling
-  seeds do not measure variability across independent training runs.
-- Fixed nominal reaching target and reset conditions; no established disturbance
-  robustness, hardware transfer, or indefinite balancing.
-- Ten-second cap; improved completion does not establish longer-term stability.
-- Simplified sole-pad contacts and conservative fall guards; no self-collision
-  or non-foot body-ground collision response.
-- Mixed world-model calibration and a lateral-failure tradeoff. Recovery and
-  CUDA execution-workaround differences also limit strict causal attribution.
+```bash
+PYTHONPATH=scripts python3 -m unittest scripts.test_prior_prediction
+PYTHONPATH=scripts python3 -m unittest scripts.test_jsonl_to_tensorboard
+PYTHONPATH=scripts python3 scripts/dreamer.py check --logdir /tmp/ergocub-readiness --platform cpu
+```
 
-A future 1,000,000-step evaluation will add matched survival statistics and a
-new recording against the preserved 500k policies. **No 1M result is reported here.**
+The readiness command initializes and evaluates a policy without training. It
+may still require a compatible JAX/Embodied installation. Do not place
+checkpoints, replay, logs, virtual environments, or datasets in this checkout.
 
-## Credits, provenance, and license
+## References and licenses
 
-- [HumanoidBench](https://github.com/carlosferrazza/humanoid-bench): the upstream
-  DreamerV3 implementation used for the unchanged baseline, pinned above.
-- [DreamerV3](https://danijar.com/project/dreamerv3/), *Mastering Diverse Control
-  Tasks through World Models*, by Danijar Hafner, Jurgis Pasukonis, Jimmy Ba,
-  and Timothy Lillicrap; [original code](https://github.com/danijar/dreamerv3).
-- [MuJoCo](https://mujoco.org/): physics simulation.
-- [ergoCub](https://ergocub.eu/): robot project; public
-  [ergoCubSN001 model source](https://github.com/mesh-iit/ergocub-software/tree/6c255e258cd184e91765b607222b6b6877bf7459/urdf/ergoCub/robots/ergoCubSN001),
-  revision `6c255e258cd184e91765b607222b6b6877bf7459`.
+- Hafner et al., *Mastering Diverse Domains through World Models*, DreamerV3:
+  [project page](https://danijar.com/project/dreamerv3/).
+- HumanoidBench DreamerV3 implementation:
+  [pinned source](https://github.com/carlosferrazza/humanoid-bench/tree/cb1189039151c8aadaaa987b442da54383c87fab/dreamerv3).
+- ergoCub software and model source:
+  [pinned revision](https://github.com/mesh-iit/ergocub-software/tree/6c255e258cd184e91765b607222b6b6877bf7459/urdf/ergoCub/robots/ergoCubSN001).
+- MuJoCo: [mujoco.org](https://mujoco.org/).
 
-The demo exports the first completed episode of the unchanged 500k policy's
-ordinary evaluation, separate from the matched-seed cohorts. The MP4 preserves
-the original recorded frames; the GIF is a full-episode preview at reduced frame
-rate and original playback speed. Figures are existing analysis exports with
-unchanged pixels and removed metadata. No upstream code or robot model/meshes
-are redistributed. Original showcase content uses MIT; the BSD-3-Clause robot
-source notice is retained in [LICENSE](LICENSE). Third-party licenses remain
-with their respective works. This independent POC implies no affiliation or
-endorsement by the credited projects.
+Original repository contributions are covered by [LICENSE](LICENSE). Third-party
+licenses and attribution notices remain with their respective works.
