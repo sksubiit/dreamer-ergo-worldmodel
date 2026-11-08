@@ -23,6 +23,8 @@
 !/configs/*.json
 !/scripts/
 !/scripts/*.py
+!/analysis/
+!/analysis/*.json
 
 __pycache__/
 *.py[cod]

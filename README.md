@@ -35,7 +35,7 @@ retained under `assets/ergocub/`.
 ## Frozen results
 
 These are verified results from one training seed and matched frozen-policy
-evaluation cohorts. They are reported for Empirical traceability, not as
+evaluation cohorts. They are reported for empirical traceability, not as
 generalization, safety, or continual-learning claims.
 
 | Policy and total driver steps | Mean survival, capped at 10 s | Reached target | Survived to 10 s |
@@ -76,6 +76,19 @@ are intentionally not redistributed. The public code preserves the model,
 physics, and evaluation interfaces needed for a future independently packaged
 analysis. Experiment 2 remains ongoing and is not included.
 
+The verified audit used 10 exact frozen episode replays and 16 RSSM particles
+per anchor. From 0.6 s before sustained support loss, mean open-loop errors at
+0.2/0.4/0.6 s were 6.7/10.9/18.7 mm root-height MAE,
+2.91/5.43/9.20 degrees projected-gravity error, and
+0.047/0.083/0.168 m/s local-linear-velocity error. At the 0.6 s horizon,
+the imagined critic values averaged 631/534/399 raw reward units, versus
+515/75/23 on the corresponding observed posterior states. At actual terminal
+observations, predicted continuation remained 0.379/0.419/0.460 at those
+horizons while the observed continuation was zero. These are frozen,
+recorded-action diagnostics, not independent episodes or a claim of global
+world-model failure. The sanitized values and CPU plot recipe are in
+`analysis/experiment1_summary.json` and `scripts/plot_experiment1.py`.
+
 ![Matched survival, qualified dwell, and paired episode outcomes](assets/figures/survival-comparison.png)
 
 ![Frozen-model action-ranking diagnostic](assets/figures/action-ranking.png)
@@ -103,26 +116,30 @@ important limitations.
 
 ## Setup and checks
 
-Install the pinned physics requirements for asset-only checks:
+From a clean checkout, create an isolated CPU environment and install the
+pinned Dreamer requirements. TensorBoard is included because it is required by
+the published analysis tests:
 
 ```bash
-python3 -m pip install -r configs/physics_requirements.in
-PYTHONPATH=scripts python3 scripts/verify_assets.py
-PYTHONPATH=scripts python3 scripts/validate_physics.py --output /tmp/ergocub-physics --no-render
+python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip uv
+.venv/bin/uv pip sync --python .venv/bin/python configs/dreamer_requirements.lock
 ```
 
 The physics validator intentionally reports exit status 2 when the unchanged
 nominal hold falls; its geometry, reset, actuator-limit, and pulse checks still
 record the measured failure and are the expected lightweight baseline result.
 
-For Dreamer checks, obtain the pinned upstream HumanoidBench checkout at
-`vendor/humanoid-bench` and make its `dreamerv3` directory available as shown
-by the launcher. Install `configs/dreamer_requirements.lock`, then run:
+The launcher verifies the pinned upstream checkout. Obtain it at the expected
+path and revision, then run the checks below:
 
 ```bash
-PYTHONPATH=scripts python3 -m unittest scripts.test_prior_prediction
-PYTHONPATH=scripts python3 -m unittest scripts.test_jsonl_to_tensorboard
-PYTHONPATH=scripts python3 scripts/dreamer.py check --logdir /tmp/ergocub-readiness --platform cpu
+git clone https://github.com/carlosferrazza/humanoid-bench.git vendor/humanoid-bench
+git -C vendor/humanoid-bench checkout cb1189039151c8aadaaa987b442da54383c87fab
+PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python scripts/verify_assets.py
+PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python -m unittest scripts.test_prior_prediction scripts.test_jsonl_to_tensorboard
+PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python scripts/dreamer.py check --logdir /tmp/ergocub-readiness --platform cpu
+PYTHONPATH=scripts .venv/bin/python scripts/plot_experiment1.py --output /tmp/experiment1.png
 ```
 
 The readiness command initializes and evaluates a policy without training. It
