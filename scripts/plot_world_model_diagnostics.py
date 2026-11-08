@@ -1,4 +1,4 @@
-"""Plot the sanitized Experiment 1 summary without private artifacts."""
+"""Plot the sanitized historical world-model diagnostics without private artifacts."""
 import argparse
 import json
 from pathlib import Path
@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SUMMARY = ROOT / "analysis" / "experiment1_summary.json"
+SUMMARY = ROOT / "analysis" / "world_model_diagnostics_summary.json"
 
 
 def main():

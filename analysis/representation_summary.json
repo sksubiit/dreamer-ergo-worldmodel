@@ -1,0 +1,35 @@
+{
+  "experiment": "Experiment 1: linear accessibility of balance information in frozen RSSM representations",
+  "episodes": 120,
+  "frozen_policies": [
+    "300k",
+    "500k control",
+    "600k Prior10",
+    "1M Prior10"
+  ],
+  "splits": {
+    "training_episodes": 72,
+    "validation_episodes": 24,
+    "held_out_test_episodes": 24,
+    "held_out_seed_clusters": 6
+  },
+  "primary_target": "loaded-contact COM support margin",
+  "metric": "mean absolute error (mm)",
+  "current_observation_baseline_mae_mm": 14.278,
+  "posterior_mae_mm": {
+    "300k": 13.976,
+    "500k control": 13.697,
+    "600k Prior10": 13.351,
+    "1M Prior10": 13.181
+  },
+  "one_m_posterior_improvement_percent": 7.7,
+  "one_m_posterior_minus_observation_simultaneous_95_percent_interval_mm": [-2.069, -0.125],
+  "prespecified_primary_criterion_met_by": ["1M Prior10"],
+  "interpretation": "Limited linear accessibility of current balance information; not physical understanding, prediction accuracy, or improved control.",
+  "limitations": [
+    "Six held-out seed clusters.",
+    "Most episodes use two-foot support.",
+    "Feature capacities are unequal.",
+    "Directional and contact coverage is limited."
+  ]
+}

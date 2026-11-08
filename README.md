@@ -68,26 +68,51 @@ from this checkout alone.
 
 ## Experiment 1: latent representation analysis
 
-Experiment 1 is complete as a frozen-model analysis. It probes the RSSM latent
-representation for information relevant to proprioceptive state, contact,
-uprightness, reaching, and fall-related outcomes, while separating analysis
-from policy training. Its private checkpoint- and trajectory-level artifacts
-are intentionally not redistributed. The public code preserves the model,
-physics, and evaluation interfaces needed for a future independently packaged
-analysis. Experiment 2 remains ongoing and is not included.
+Experiment 1 asked what balance-related physical information is linearly
+accessible from frozen RSSM representations. Collected 120 physical
+episodes from four frozen policies and used four encoding checkpoints:
+300k, 500k control, 600k Prior10, and 1M Prior10. The split was 72 training,
+24 validation, and 24 held-out test episodes across six held-out seed clusters.
 
-The verified audit used 10 exact frozen episode replays and 16 RSSM particles
-per anchor. From 0.6 s before sustained support loss, mean open-loop errors at
-0.2/0.4/0.6 s were 6.7/10.9/18.7 mm root-height MAE,
-2.91/5.43/9.20 degrees projected-gravity error, and
+The prespecified primary target was loaded-contact COM support margin. Held-out
+mean absolute error (MAE) was:
+
+| Representation | MAE (mm) |
+| --- | ---: |
+| Current observation baseline | 14.278 |
+| 300k posterior | 13.976 |
+| 500k control posterior | 13.697 |
+| 600k Prior10 posterior | 13.351 |
+| 1M Prior10 posterior | 13.181 |
+
+The 1M posterior improved on the observation baseline by 7.7%; the simultaneous
+95% interval for posterior minus observation was [-2.069, -0.125] mm. Only the
+1M posterior met the prespecified simultaneous primary criterion. This result
+demonstrates limited linear accessibility of current balance information. It
+does not demonstrate physical understanding, prediction accuracy, or improved
+control. Important limitations are six held-out seed clusters, mostly two-foot
+support, unequal feature capacities, and limited directional/contact coverage.
+
+The sanitized results and CPU-only figure recipe are in
+`analysis/representation_summary.json` and `scripts/plot_representation.py`.
+The private checkpoints and physical episodes required for a fresh analysis are
+not redistributed. Experiment 2 remains ongoing and is not included.
+
+## Historical world-model diagnostics
+
+The following results are earlier DreamerV3 world-model diagnostics, separate
+from the completed representation study. They used 10 exact frozen episode
+replays and 16 RSSM particles per anchor. From 0.6 s before sustained support
+loss, mean open-loop errors at 0.2/0.4/0.6 s were 6.7/10.9/18.7 mm root-height
+MAE, 2.91/5.43/9.20 degrees projected-gravity error, and
 0.047/0.083/0.168 m/s local-linear-velocity error. At the 0.6 s horizon,
-the imagined critic values averaged 631/534/399 raw reward units, versus
-515/75/23 on the corresponding observed posterior states. At actual terminal
-observations, predicted continuation remained 0.379/0.419/0.460 at those
-horizons while the observed continuation was zero. These are frozen,
-recorded-action diagnostics, not independent episodes or a claim of global
-world-model failure. The sanitized values and CPU plot recipe are in
-`analysis/experiment1_summary.json` and `scripts/plot_experiment1.py`.
+imagined critic values averaged 631/534/399 raw reward units, versus 515/75/23
+on corresponding observed posterior states. At actual terminal observations,
+predicted continuation remained 0.379/0.419/0.460 while observed continuation
+was zero. These are recorded-action diagnostics, not independent episodes or a
+claim of global world-model failure. Their sanitized summary and CPU plot
+recipe are `analysis/world_model_diagnostics_summary.json` and
+`scripts/plot_world_model_diagnostics.py`.
 
 ![Matched survival, qualified dwell, and paired episode outcomes](assets/figures/survival-comparison.png)
 
@@ -139,7 +164,7 @@ git -C vendor/humanoid-bench checkout cb1189039151c8aadaaa987b442da54383c87fab
 PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python scripts/verify_assets.py
 PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python -m unittest scripts.test_prior_prediction scripts.test_jsonl_to_tensorboard
 PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python scripts/dreamer.py check --logdir /tmp/ergocub-readiness --platform cpu
-PYTHONPATH=scripts .venv/bin/python scripts/plot_experiment1.py --output /tmp/experiment1.png
+PYTHONPATH=scripts .venv/bin/python scripts/plot_representation.py --output /tmp/experiment1-representation.png
 ```
 
 The readiness command initializes and evaluates a policy without training. It
