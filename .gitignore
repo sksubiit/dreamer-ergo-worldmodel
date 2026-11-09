@@ -17,6 +17,7 @@
 /assets/figures/*
 !/assets/figures/survival-comparison.png
 !/assets/figures/action-ranking.png
+!/assets/figures/system-architecture.svg
 !/configs/
 !/configs/*.in
 !/configs/*.lock

@@ -3,6 +3,8 @@
 Empirical investigation of DreamerV3, proprioception-dominant humanoid
 control, and learned world models for a standard ergoCubSN001 in MuJoCo.
 
+![DreamerV3 ergoCub system architecture](assets/figures/system-architecture.svg)
+
 [![Standard ergoCub reaching and stabilization in MuJoCo](assets/demo/reaching-balance-500k.gif)](assets/demo/reaching-balance-500k.mp4)
 
 The repository contains the public implementation surface, selected figures,

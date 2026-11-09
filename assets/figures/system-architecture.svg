@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">DreamerV3 ergoCub system architecture</title>
+  <desc id="desc">Two connected loops show physical control at 50 Hz and model-based learning from replayed physical experience. Learned parameters feed back to the acting system.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15803d"/>
+    </marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font: 700 25px sans-serif; fill: #0f172a; }
+      .band-title { font: 700 18px sans-serif; fill: #0f172a; }
+      .label { font: 600 16px sans-serif; fill: #0f172a; }
+      .small { font: 14px sans-serif; fill: #334155; }
+      .box { stroke-width: 2; }
+      .physical { fill: #eff6ff; stroke: #2563eb; }
+      .learning { fill: #f0fdf4; stroke: #15803d; }
+      .neutral { fill: #f8fafc; stroke: #64748b; }
+      .arrow-blue { fill: none; stroke: #2563eb; stroke-width: 3; marker-end: url(#arrow-blue); }
+      .arrow-green { fill: none; stroke: #15803d; stroke-width: 3; marker-end: url(#arrow-green); }
+      .arrow-slate { fill: none; stroke: #475569; stroke-width: 2.5; marker-end: url(#arrow-slate); }
+      .feedback { fill: none; stroke: #7c3aed; stroke-width: 2.5; stroke-dasharray: 8 6; marker-end: url(#arrow-slate); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="780" fill="#ffffff"/>
+  <text x="600" y="42" text-anchor="middle" class="title">DreamerV3 ergoCub architecture</text>
+
+  <rect x="30" y="70" width="1140" height="285" rx="18" fill="#f8fbff" stroke="#bfdbfe" stroke-width="2"/>
+  <text x="55" y="104" class="band-title">Physical control loop - 50 Hz</text>
+
+  <rect x="55" y="155" width="185" height="86" rx="12" class="box physical"/>
+  <text x="147" y="188" text-anchor="middle" class="label">MuJoCo ergoCub</text>
+  <text x="147" y="212" text-anchor="middle" class="small">physical state</text>
+
+  <rect x="285" y="155" width="150" height="86" rx="12" class="box physical"/>
+  <text x="360" y="188" text-anchor="middle" class="label">90D</text>
+  <text x="360" y="212" text-anchor="middle" class="small">observation</text>
+
+  <rect x="480" y="145" width="205" height="106" rx="12" class="box physical"/>
+  <text x="582" y="181" text-anchor="middle" class="label">RSSM filtering</text>
+  <text x="582" y="213" text-anchor="middle" class="small">prior + posterior</text>
+
+  <rect x="730" y="155" width="150" height="86" rx="12" class="box physical"/>
+  <text x="805" y="188" text-anchor="middle" class="label">Actor</text>
+  <text x="805" y="212" text-anchor="middle" class="small">action policy</text>
+
+  <rect x="925" y="145" width="205" height="106" rx="12" class="box physical"/>
+  <text x="1027" y="181" text-anchor="middle" class="label">23 joint-position-</text>
+  <text x="1027" y="204" text-anchor="middle" class="label">reference commands</text>
+  <text x="1027" y="228" text-anchor="middle" class="small">at 50 Hz</text>
+
+  <path d="M240 198 H285" class="arrow-blue"/>
+  <path d="M435 198 H480" class="arrow-blue"/>
+  <path d="M685 198 H730" class="arrow-blue"/>
+  <path d="M880 198 H925" class="arrow-blue"/>
+  <path d="M1027 251 V310 H147 V241" class="arrow-blue"/>
+  <text x="1060" y="298" class="small" fill="#2563eb">act</text>
+  <text x="72" y="299" class="small" fill="#2563eb">next physical state</text>
+
+  <rect x="30" y="390" width="1140" height="310" rx="18" fill="#f7fdf8" stroke="#bbf7d0" stroke-width="2"/>
+  <text x="55" y="424" class="band-title">Model-based learning loop</text>
+
+  <rect x="55" y="485" width="185" height="86" rx="12" class="box neutral"/>
+  <text x="147" y="518" text-anchor="middle" class="label">Physical</text>
+  <text x="147" y="542" text-anchor="middle" class="small">experience</text>
+
+  <rect x="285" y="485" width="175" height="86" rx="12" class="box learning"/>
+  <text x="372" y="518" text-anchor="middle" class="label">Replay buffer</text>
+  <text x="372" y="538" text-anchor="middle" class="small">observations + actions</text>
+  <text x="372" y="558" text-anchor="middle" class="small">+ rewards</text>
+
+  <rect x="505" y="465" width="245" height="126" rx="12" class="box learning"/>
+  <text x="627" y="501" text-anchor="middle" class="label">World model</text>
+  <text x="627" y="525" text-anchor="middle" class="small">RSSM dynamics</text>
+  <text x="627" y="548" text-anchor="middle" class="small">observation / reward /</text>
+  <text x="627" y="568" text-anchor="middle" class="small">continuation prediction</text>
+
+  <rect x="795" y="485" width="165" height="86" rx="12" class="box learning"/>
+  <text x="877" y="518" text-anchor="middle" class="label">Latent</text>
+  <text x="877" y="542" text-anchor="middle" class="small">imagination</text>
+
+  <rect x="985" y="465" width="170" height="126" rx="12" class="box learning"/>
+  <text x="1070" y="501" text-anchor="middle" class="label">Actor + critic</text>
+  <text x="1070" y="525" text-anchor="middle" class="small">training</text>
+  <text x="1070" y="551" text-anchor="middle" class="small">policy + value updates</text>
+  <text x="1070" y="571" text-anchor="middle" class="small">critic guides learning</text>
+
+  <path d="M240 528 H285" class="arrow-green"/>
+  <path d="M460 528 H505" class="arrow-green"/>
+  <path d="M750 528 H795" class="arrow-green"/>
+  <path d="M960 528 H985" class="arrow-green"/>
+
+  <path d="M147 241 V485" class="arrow-slate"/>
+  <text x="160" y="376" class="small">record</text>
+  <path d="M627 465 V355 H582 V251" class="feedback"/>
+  <path d="M1070 465 V355 H805 V241" class="feedback"/>
+  <text x="695" y="342" text-anchor="middle" class="small" fill="#7c3aed">learned parameters feed back to filtering and actor</text>
+
+  <text x="600" y="744" text-anchor="middle" class="small">Imagination is used during training; the deployed actor acts from the current RSSM state estimate.</text>
+</svg>
