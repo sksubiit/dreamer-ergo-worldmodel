@@ -17,7 +17,7 @@ Longer Prior10 continuation was non-monotonic on the reused panel: 600k, 700k, 8
 
 ## V2
 
-V2 validated named per-joint PD changes and improved nominal actuator tracking and hold behavior. Fresh training reached 550k with a complete frozen curve, but V2 did not demonstrate better combined standing-and-reaching learning than V1. V2 550k averaged 5.299 s survival with 18/20 qualified reaching episodes and 3/20 ten-second survivors; the matched V1 500k cohort averaged 7.739 s. The cohorts and control packages differ, so actuator gains alone cannot explain the difference. Qualified or latched reaching is not sustained reaching.
+V2 validated named per-joint PD changes and improved nominal actuator tracking and hold behavior. Fresh training reached 550k with a complete frozen curve, but V2 did not demonstrate better combined standing-and-reaching learning than V1. V2 550k averaged 5.299 s survival with 18/20 qualified reaching episodes and 3/20 ten-second survivors; a separate V1 500k cohort averaged 7.739 s. The cross-version cohorts, control packages, and evaluation schedules are not matched or causally comparable, so actuator gains alone cannot explain the difference. Qualified or latched reaching is not sustained reaching.
 
 ## Interpretation
 

@@ -14,6 +14,8 @@ PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python scripts/veri
 PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python -m unittest scripts.test_prior_prediction scripts.test_jsonl_to_tensorboard
 PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python scripts/dreamer.py check --logdir /tmp/ergocub-readiness --platform cpu
 PYTHONPATH=scripts .venv/bin/python scripts/plot_representation.py --output /tmp/experiment1-representation.png
+PYTHONPATH=scripts .venv/bin/python scripts/plot_learning_curves.py --output /tmp/learning-curves.png
+PYTHONPATH=scripts .venv/bin/python scripts/plot_mechanistic_findings.py --output /tmp/mechanistic-findings.png
 ```
 
 The physics validator may return status 2 when the unchanged nominal hold falls; that is an expected recorded baseline result. The readiness check initializes and evaluates without training, but may require a compatible JAX/Embodied installation.

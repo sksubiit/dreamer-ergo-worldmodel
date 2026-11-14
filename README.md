@@ -49,9 +49,9 @@ retained under `assets/ergocub/`.
 
 ## Frozen results
 
-These are verified results from one training seed and matched frozen-policy
-evaluation cohorts. They are reported for empirical traceability, not as
-generalization, safety, or continual-learning claims.
+These are verified results from one training lineage and separate frozen-policy
+cohorts. They are reported for empirical traceability, not as generalization,
+safety, or continual-learning claims.
 
 | Policy and total driver steps | Mean survival, capped at 10 s | Reached target | Survived to 10 s |
 | --- | ---: | ---: | ---: |
@@ -59,109 +59,48 @@ generalization, safety, or continual-learning claims.
 | DreamerV3, 500k | 7.74 s | 100% | 42% |
 | Prior10, 500k | 8.43 s | 100% | 56% |
 
-The primary 50-episode comparison used matched policy seeds 50–99. In a
-separate 200-episode panel (seeds 100–299), 500k control/Prior10 mean survival
-was 8.256/8.606 s, with 47.0%/63.5% surviving to 10 s. The paired mean
-difference was +0.350 s with 95% CI [-0.068, 0.770], so a mean-survival
-advantage was not established. Prior10 also changed the failure distribution:
-leftward falls increased from 1.0% to 21.5% in that panel.
-
-The Prior10 intervention adds a 0.1-weighted, ten-step open-loop prior loss to
-the world-model heads using recorded actions. It leaves the upstream network
-and optimizer structure unchanged. In the 50-seed comparison, Prior10 minus
-unchanged 500k was +0.69 s, 95% CI [-0.24, 1.63], and held-out action-ranking
-agreement was 10/10 for Prior10 versus 1/10 for unchanged 500k. This small
-open-loop diagnostic did not establish reliable action ranking or calibrated
-values.
-
-The Prior10 continuation was evaluated at 600k, 700k, 800k, 900k, and 1M
-total steps on the reused 200-seed panel. Mean capped survival was respectively
-9.339, 5.248, 7.732, 8.784, and 8.086 s. The 1M value remained censored by the
-10-second cap and does not establish indefinite balance. These continuation
-results require unavailable checkpoints and replay; they are not reproducible
-from this checkout alone.
+The 200-episode Prior10 panel found a mean difference of +0.350 s with 95% CI
+[-0.068, 0.770], so an additional mean-survival benefit was not established.
+Prior10 continuation was non-monotonic: 600k reached 9.339 s, while 1M reached
+8.086 s on the reused panel. The full curves and cohort labels are in
+[learning-curves.png](assets/figures/learning-curves.png) and
+[analysis/learning_curves.csv](analysis/learning_curves.csv).
 
 ## Experiment 1: latent representation analysis
 
-Experiment 1 asked what balance-related physical information is linearly
-accessible from frozen RSSM representations. Collected 120 physical
-episodes from four frozen policies and used four encoding checkpoints:
-300k, 500k control, 600k Prior10, and 1M Prior10. The split was 72 training,
-24 validation, and 24 held-out test episodes across six held-out seed clusters.
+E1 found limited linear accessibility of current support-margin information:
+the 1M posterior reached 13.181 mm held-out MAE versus 14.278 mm for the
+current observation baseline, with simultaneous 95% interval [-2.069, -0.125]
+mm. This does not demonstrate physical understanding, prediction accuracy, or
+improved control. E2-E4 and the full evidence boundaries are summarized in
+[scientific results](docs/scientific_results.md).
 
-The prespecified primary target was loaded-contact COM support margin. Held-out
-mean absolute error (MAE) was:
+## Mechanism summary
 
-| Representation | MAE (mm) |
-| --- | ---: |
-| Current observation baseline | 14.278 |
-| 300k posterior | 13.976 |
-| 500k control posterior | 13.697 |
-| 600k Prior10 posterior | 13.351 |
-| 1M Prior10 posterior | 13.181 |
+E2 found phase- and channel-dependent prediction errors with optimistic
+continuation near actual falls. E3 found a positive one-second restricted-return
+effect from a bounded ankle intervention, but no durable rescue. E4's BLF path
+was guard-censored at 0.360 s and was not a successful WBC comparison. The
+[mechanism figure](assets/figures/mechanistic-findings.png) shows the central
+quantitative findings with only supported intervals.
 
-The 1M posterior improved on the observation baseline by 7.7%; the simultaneous
-95% interval for posterior minus observation was [-2.069, -0.125] mm. Only the
-1M posterior met the prespecified simultaneous primary criterion. This result
-demonstrates limited linear accessibility of current balance information. It
-does not demonstrate physical understanding, prediction accuracy, or improved
-control. Important limitations are six held-out seed clusters, mostly two-foot
-support, unequal feature capacities, and limited directional/contact coverage.
+V2's 550k cohort averaged 5.299 s survival, with 18/20 qualified reaching
+episodes and 3/20 ten-second survivors. This was not better demonstrated
+combined standing-and-reaching learning than V1: the cross-version cohorts,
+control packages, and evaluation schedules are not matched or causally
+comparable. Better nominal actuator tracking does not isolate the source of
+learning differences. See [V1/V2 comparison](docs/v1_v2_comparison.md).
 
-The sanitized results and CPU-only figure recipe are in
-`analysis/representation_summary.json` and `scripts/plot_representation.py`.
-The private checkpoints and physical episodes required for a fresh analysis are
-not redistributed. E1 is complete; its public artifact is a sanitized summary,
-not a redistribution of the analysis inputs.
+![Learning curves for V1, Prior10, and V2](assets/figures/learning-curves.png)
 
-## Completed mechanism studies
+![Central E1-E4 findings](assets/figures/mechanistic-findings.png)
 
-E2 found phase- and channel-dependent action-conditioned prediction errors and
-optimistic continuation near actual falls. E3 found that imagined action
-ranking can disagree with physical outcomes, while a bounded negative ankle
-intervention improved one-second restricted return by `+1.096630` (paired 95%
-CI `[0.377594, 1.843514]`) in a frozen 300k policy test. Every branch survived
-that one-second window, so this is not evidence of durable rescue. E4 integrated
-an existing-library BLF balance chain, but numerical admission stopped the
-trial at `0.360 s` and the physical trajectory deteriorated; it was not a
-successful WBC comparison. See [scientific results](docs/scientific_results.md)
-and [representation, prediction, and control](docs/representation_prediction_control.md)
-for the evidence boundaries.
-
-## V2 conclusion
-
-V2 validated named per-joint PD changes and improved nominal actuator tracking
-and hold behavior, then reached 550k fresh DreamerV3 steps with a complete
-frozen learning curve. It did not demonstrate better combined standing and
-reaching learning than V1: V2's 550k cohort averaged `5.299 s` survival with
-`18/20` qualified reaching episodes and `3/20` ten-second survivors, while the
-matched V1 500k cohort averaged `7.739 s`. The cohorts and control packages
-differ, so actuator gains alone cannot explain the comparison. A latched
-reaching event is not sustained reaching or standing.
-
-## Historical world-model diagnostics
-
-The following results are earlier DreamerV3 world-model diagnostics, separate
-from the completed representation study. They used 10 exact frozen episode
-replays and 16 RSSM particles per anchor. From 0.6 s before sustained support
-loss, mean open-loop errors at 0.2/0.4/0.6 s were 6.7/10.9/18.7 mm root-height
-MAE, 2.91/5.43/9.20 degrees projected-gravity error, and
-0.047/0.083/0.168 m/s local-linear-velocity error. At the 0.6 s horizon,
-imagined critic values averaged 631/534/399 raw reward units, versus 515/75/23
-on corresponding observed posterior states. At actual terminal observations,
-predicted continuation remained 0.379/0.419/0.460 while observed continuation
-was zero. These are recorded-action diagnostics, not independent episodes or a
-claim of global world-model failure. Their sanitized summary and CPU plot
-recipe are `analysis/world_model_diagnostics_summary.json` and
-`scripts/plot_world_model_diagnostics.py`.
-
-![Matched survival, qualified dwell, and paired episode outcomes](assets/figures/survival-comparison.png)
-
-![Frozen-model action-ranking diagnostic](assets/figures/action-ranking.png)
-
-The figures are unchanged selected exports from the frozen evaluations. A
-qualified reaching event means the palm is within 3 cm of the target for 0.5 s,
-with root tilt below 20 degrees and root height above 90% of reset height.
+The gallery includes [V2 seed 1002](assets/demo/v2-550k-seed-1002-timeout.mp4),
+a qualified reaching event followed by a 10-second timeout, and [V2 seed
+1007](assets/demo/v2-550k-seed-1007-fall.mp4), a fall at 4.642 s. Both are from
+the 550k frozen checkpoint; see [video_manifest.json](analysis/video_manifest.json)
+for the checkpoint hash, outcomes, and the warning that a latched event is not
+sustained balance.
 
 ## Reproducibility boundary
 
@@ -211,6 +150,8 @@ PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python scripts/veri
 PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python -m unittest scripts.test_prior_prediction scripts.test_jsonl_to_tensorboard
 PYTHONPATH=scripts:vendor/humanoid-bench/dreamerv3 .venv/bin/python scripts/dreamer.py check --logdir /tmp/ergocub-readiness --platform cpu
 PYTHONPATH=scripts .venv/bin/python scripts/plot_representation.py --output /tmp/experiment1-representation.png
+PYTHONPATH=scripts .venv/bin/python scripts/plot_learning_curves.py --output /tmp/learning-curves.png
+PYTHONPATH=scripts .venv/bin/python scripts/plot_mechanistic_findings.py --output /tmp/mechanistic-findings.png
 ```
 
 The readiness command initializes and evaluates a policy without training. It

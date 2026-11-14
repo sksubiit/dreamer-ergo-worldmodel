@@ -1,0 +1,50 @@
+{
+  "provenance": "Sanitized values transcribed from closed E1-E4 reports; no checkpoints, trajectories, or private paths included.",
+  "e1_representation": {
+    "metric": "held-out loaded-contact COM support-margin MAE",
+    "unit": "mm",
+    "episodes": 120,
+    "held_out_test_episodes": 24,
+    "held_out_seed_clusters": 6,
+    "values": {
+      "current_observation": 14.278,
+      "300k_posterior": 13.976,
+      "500k_control_posterior": 13.697,
+      "600k_prior10_posterior": 13.351,
+      "1m_prior10_posterior": 13.181
+    },
+    "primary_difference_1m_minus_observation": -1.097,
+    "simultaneous_95_percent_interval_mm": [-2.069, -0.125],
+    "interpretation": "Limited linear accessibility, not physical understanding or improved control."
+  },
+  "e2_prediction": {
+    "metric": "prior continuation probability at actual-fall endpoints",
+    "unit": "probability",
+    "models": ["300k", "500k control", "600k Prior10", "1M Prior10"],
+    "values": [0.857, 0.881, 0.822, 0.938],
+    "simultaneous_or_bootstrap_intervals": [[0.819, 0.890], [0.843, 0.915], [0.764, 0.876], [0.913, 0.962]],
+    "target": 0.0,
+    "episodes": 120,
+    "actual_falls": 83,
+    "timeouts": 37,
+    "interpretation": "Optimistic terminal continuation near actual falls; posterior reconstruction is not genuine future prediction."
+  },
+  "e3_action_feedback": {
+    "metric": "negative ankle correction minus zero correction restricted one-second return",
+    "unit": "return units",
+    "estimate": 1.09663,
+    "paired_95_percent_interval": [0.377594, 1.843514],
+    "simultaneous_95_percent_interval": [0.124099, 2.069161],
+    "branches": 30,
+    "interpretation": "Positive finite-window effect; all conditions survived one second, so durable rescue was not demonstrated."
+  },
+  "e4_explicit_control": {
+    "metric": "BLF commissioning duration before numerical admission stop",
+    "unit": "seconds",
+    "duration": 0.360,
+    "commands_applied": 18,
+    "stop_reason": "passive-neck residual exceeded the numerical guard",
+    "interval": null,
+    "interpretation": "Guard-censored commissioning result, not a physical fall or successful WBC comparison."
+  }
+}

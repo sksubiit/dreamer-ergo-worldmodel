@@ -1,0 +1,32 @@
+{
+  "provenance": "Copied from the closed V2 550k frozen evaluation; videos are selected representatives, not a success-only gallery.",
+  "checkpoint": {
+    "driver_steps": 550000,
+    "sha256": "8f5185c9a0cfdf4db23c14724752aca17e9de901e392b4c41d9fa2c90e6aff6b",
+    "evaluation_seeds": "1000-1019",
+    "cap_seconds": 10.0,
+    "nominal_reset": true
+  },
+  "videos": [
+    {
+      "file": "assets/demo/v2-550k-seed-1002-timeout.mp4",
+      "source": "private recovery_02_550k_final_eval_02/videos/episode_0002.mp4",
+      "seed": 1002,
+      "checkpoint": "V2 550k",
+      "outcome": "timeout at 10.0 s",
+      "qualified_reaching": true,
+      "maximum_qualified_dwell_s": 2.96,
+      "interpretation": "Qualified reaching followed by a 10-second timeout; not evidence of sustained standing or indefinite balance."
+    },
+    {
+      "file": "assets/demo/v2-550k-seed-1007-fall.mp4",
+      "source": "private recovery_02_550k_final_eval_02/videos/episode_0007.mp4",
+      "seed": 1007,
+      "checkpoint": "V2 550k",
+      "outcome": "fall at 4.642 s",
+      "qualified_reaching": false,
+      "maximum_qualified_dwell_s": 0.48,
+      "interpretation": "Representative failure from the same frozen cohort."
+    }
+  ]
+}
