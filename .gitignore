@@ -26,6 +26,8 @@
 !/scripts/*.py
 !/analysis/
 !/analysis/*.json
+!/docs/
+!/docs/*.md
 
 __pycache__/
 *.py[cod]

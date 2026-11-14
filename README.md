@@ -10,6 +10,19 @@ control, and learned world models for a standard ergoCubSN001 in MuJoCo.
 The repository contains the public implementation surface, selected figures,
 and a frozen record of results.
 
+This release is organized around one question: how do representation,
+prediction, imagined decision-making, and physical feedback relate in a
+proprioception-dominant humanoid task? The completed investigation covers
+DreamerV3 learning, representation (E1), prediction (E2), action and
+closed-loop correction (E3), explicit control integration (E4), and a V2
+control-interface/training comparison. The evidence supports useful local
+mechanistic findings, but not a generally reliable humanoid controller.
+
+Read the [research overview](docs/scientific_results.md) for the compact
+results narrative, then the [reproducibility guide](docs/reproducibility.md)
+for the boundary between checks supported by this repository and analyses
+that require private checkpoints or trajectories.
+
 ## Research system
 
 The task combines left-palm reaching with whole-body stabilization. The
@@ -98,7 +111,33 @@ support, unequal feature capacities, and limited directional/contact coverage.
 The sanitized results and CPU-only figure recipe are in
 `analysis/representation_summary.json` and `scripts/plot_representation.py`.
 The private checkpoints and physical episodes required for a fresh analysis are
-not redistributed. Experiment 2 remains ongoing and is not included.
+not redistributed. E1 is complete; its public artifact is a sanitized summary,
+not a redistribution of the analysis inputs.
+
+## Completed mechanism studies
+
+E2 found phase- and channel-dependent action-conditioned prediction errors and
+optimistic continuation near actual falls. E3 found that imagined action
+ranking can disagree with physical outcomes, while a bounded negative ankle
+intervention improved one-second restricted return by `+1.096630` (paired 95%
+CI `[0.377594, 1.843514]`) in a frozen 300k policy test. Every branch survived
+that one-second window, so this is not evidence of durable rescue. E4 integrated
+an existing-library BLF balance chain, but numerical admission stopped the
+trial at `0.360 s` and the physical trajectory deteriorated; it was not a
+successful WBC comparison. See [scientific results](docs/scientific_results.md)
+and [representation, prediction, and control](docs/representation_prediction_control.md)
+for the evidence boundaries.
+
+## V2 conclusion
+
+V2 validated named per-joint PD changes and improved nominal actuator tracking
+and hold behavior, then reached 550k fresh DreamerV3 steps with a complete
+frozen learning curve. It did not demonstrate better combined standing and
+reaching learning than V1: V2's 550k cohort averaged `5.299 s` survival with
+`18/20` qualified reaching episodes and `3/20` ten-second survivors, while the
+matched V1 500k cohort averaged `7.739 s`. The cohorts and control packages
+differ, so actuator gains alone cannot explain the comparison. A latched
+reaching event is not sustained reaching or standing.
 
 ## Historical world-model diagnostics
 
@@ -140,6 +179,11 @@ Those private artifacts are deliberately absent.
 hardware transfer, disturbance robustness, self-collision handling, or
 long-horizon stability. The simplified contact model and the 10-second cap are
 important limitations.
+
+Detailed setup, results, V1/V2 comparison, limitations, and the release audit
+are collected in [`docs/`](docs/). The [release checklist](docs/release_checklist.md)
+records what was tested, what is intentionally excluded, and what remains
+blocked by private evidence.
 
 ## Setup and checks
 
