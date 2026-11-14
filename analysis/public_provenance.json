@@ -1,0 +1,31 @@
+{
+  "scope": "Public release artifacts generated from closed empirical evidence",
+  "private_evidence_policy": "Private reports and paths are not distributed; evidence identifiers are stable labels only.",
+  "source_evidence": [
+    "E004-final-matched-50",
+    "E004-1M-matched-200",
+    "V2-closeout-learning-curve",
+    "E1-final-representation",
+    "E2-recovery-verification",
+    "E3-closed-loop-execution-01",
+    "E4-BLF-commissioning"
+  ],
+  "generation_commands": [
+    "python3 scripts/plot_learning_curves.py --output assets/figures/learning-curves.png",
+    "python3 scripts/plot_mechanistic_findings.py --output assets/figures/mechanistic-findings.png"
+  ],
+  "sha256": {
+    "analysis/learning_curves.csv": "8dd8fd9d14241836588f518e696ea6a674cd7d9358b2344ec3d79c63c42b4369",
+    "analysis/mechanism_summary.json": "839ca2d6c4338893498bc49a50f71319f083c8a8d8c0ce72b3547521646ce0bd",
+    "analysis/video_manifest.json": "426b2c868d8d5a6151fe6989bc9f042be4e0b9a70b402f56cfb59dd590af344f",
+    "assets/figures/learning-curves.png": "1f552a44553fd867df4080c80112d6b37d441e1ae782d1a27969befe6b9e6943",
+    "assets/figures/mechanistic-findings.png": "a5d60d5a6798381a998873343b023d452e49ff566643944c5ba0ffa1dedf9b2e",
+    "assets/demo/v2-550k-seed-1002-timeout.mp4": "4593762d8a79cee1549b5d5f038c95210cc587454c74d868f97a738b46ce4f89",
+    "assets/demo/v2-550k-seed-1007-fall.mp4": "faad7fd309a51b966d5bd15d94334dae32fe2c49fac79bd706f89f068706818a"
+  },
+  "licenses": {
+    "robot_assets": "BSD-3-Clause notice retained in assets/ergocub/",
+    "generated_data_figures_and_metadata": "Repository LICENSE",
+    "videos": "Derived from the project's own frozen simulation evaluation; no third-party media included"
+  }
+}

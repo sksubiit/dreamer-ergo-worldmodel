@@ -53,11 +53,11 @@ These are verified results from one training lineage and separate frozen-policy
 cohorts. They are reported for empirical traceability, not as generalization,
 safety, or continual-learning claims.
 
-| Policy and total driver steps | Mean survival, capped at 10 s | Reached target | Survived to 10 s |
+| Policy/checkpoint and evaluation cohort | Mean survival, capped at 10 s | Reached target | Survived to 10 s |
 | --- | ---: | ---: | ---: |
-| DreamerV3, 300k | 4.45 s | 100% | 0% |
-| DreamerV3, 500k | 7.74 s | 100% | 42% |
-| Prior10, 500k | 8.43 s | 100% | 56% |
+| DreamerV3 control, 300k (n=50; seeds 50-99) | 4.45 s | 100% | 0% |
+| DreamerV3 control, 500k (n=50; seeds 50-99) | 7.74 s | 100% | 42% |
+| Prior10, 500k (n=50; seeds 50-99) | 8.43 s | 100% | 56% |
 
 The 200-episode Prior10 panel found a mean difference of +0.350 s with 95% CI
 [-0.068, 0.770], so an additional mean-survival benefit was not established.
@@ -99,8 +99,9 @@ The gallery includes [V2 seed 1002](assets/demo/v2-550k-seed-1002-timeout.mp4),
 a qualified reaching event followed by a 10-second timeout, and [V2 seed
 1007](assets/demo/v2-550k-seed-1007-fall.mp4), a fall at 4.642 s. Both are from
 the 550k frozen checkpoint; see [video_manifest.json](analysis/video_manifest.json)
-for the checkpoint hash, outcomes, and the warning that a latched event is not
-sustained balance.
+for the checkpoint hash, file hashes, outcomes, and the warning that a latched
+event is not sustained balance. Public artifact hashes and evidence identifiers
+are collected in [public_provenance.json](analysis/public_provenance.json).
 
 ## Reproducibility boundary
 

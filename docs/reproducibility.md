@@ -28,4 +28,4 @@ Frozen-policy evaluation, E1 probes, E2 prediction, E3 ranking/feedback, E4 cont
 
 Fresh end-to-end training, independent training-seed uncertainty, and raw evaluation campaigns are not claimed. Full checkpoints, replay buffers, private logs, credentials, machine-specific paths, and unpublished trajectories are deliberately excluded.
 
-Do not put checkpoints, replay, logs, virtual environments, or datasets in this repository. Asset provenance is recorded in `assets/ergocub/provenance.json`; third-party notices remain in `assets/ergocub/NOTICE` and `assets/ergocub/LICENSE`.
+Do not put checkpoints, replay, logs, virtual environments, or datasets in this repository. Asset provenance is recorded in `assets/ergocub/provenance.json`; third-party notices remain in `assets/ergocub/NOTICE` and `assets/ergocub/LICENSE`. Public derived-artifact hashes and evidence identifiers are recorded in `analysis/public_provenance.json`.

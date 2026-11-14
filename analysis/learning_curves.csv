@@ -1,15 +1,15 @@
-series,version,policy,driver_steps,mean_survival_s,ci95_low_s,ci95_high_s,survival5_rate,survival10_rate,qualified_reaching_rate,n,cohort,cohort_comparability,source
-v1_matched,V1,DreamerV3 control,300000,4.4472,4.1234,4.7928,0.24,0.00,1.00,50,matched policy seeds 50-99,within-series only,private experiment004_final_analysis/matched_summary.json
-v1_matched,V1,DreamerV3 control,500000,7.7387,7.0149,8.4241,0.84,0.42,1.00,50,matched policy seeds 50-99,within-series only,private experiment004_final_analysis/matched_summary.json
-prior10_progression,Prior10,Prior10,500000,8.6061,8.2936,8.9062,0.875,0.635,1.00,200,reused policy seeds 100-299,within-series only,private experiment004_1m_final_analysis/matched_summary.json
-prior10_progression,Prior10,Prior10,600000,9.3387,9.1619,9.5019,0.95,0.80,1.00,200,reused policy seeds 100-299,within-series only,private experiment004_1m_final_analysis/matched_summary.json
-prior10_progression,Prior10,Prior10,700000,5.2477,,,0.55,0.16,1.00,200,reused policy seeds 100-299,within-series only,private experiment004_1m_final_analysis/matched_summary.json
-prior10_progression,Prior10,Prior10,800000,7.7320,,,0.78,0.42,1.00,200,reused policy seeds 100-299,within-series only,private experiment004_1m_final_analysis/matched_summary.json
-prior10_progression,Prior10,Prior10,900000,8.7840,,,0.89,0.58,1.00,200,reused policy seeds 100-299,within-series only,private experiment004_1m_final_analysis/matched_summary.json
-prior10_progression,Prior10,Prior10,1000000,8.0860,,,0.84,0.53,1.00,200,reused policy seeds 100-299,within-series only,private experiment004_1m_final_analysis/matched_summary.json
-v2_curve,V2,DreamerV3 V2,75000,2.1140,2.0065,2.2305,0.00,0.00,0.15,20,V2 nominal frozen cohort,not comparable to V1,private ergocub_v2_demo/dreamerv3_final_closeout_01/v2_learning_curve.csv
-v2_curve,V2,DreamerV3 V2,110000,4.5765,3.9060,5.3237,0.45,0.00,0.30,20,V2 nominal frozen cohort,not comparable to V1,private ergocub_v2_demo/dreamerv3_final_closeout_01/v2_learning_curve.csv
-v2_curve,V2,DreamerV3 V2,220000,3.9453,2.7270,5.3676,0.25,0.10,0.25,20,V2 nominal frozen cohort,not comparable to V1,private ergocub_v2_demo/dreamerv3_final_closeout_01/v2_learning_curve.csv
-v2_curve,V2,DreamerV3 V2,330000,2.8374,2.4816,3.2233,0.00,0.00,0.25,20,V2 nominal frozen cohort,not comparable to V1,private ergocub_v2_demo/dreamerv3_final_closeout_01/v2_learning_curve.csv
-v2_curve,V2,DreamerV3 V2,440000,4.1544,3.8898,4.4726,0.10,0.00,0.95,20,V2 nominal frozen cohort,not comparable to V1,private ergocub_v2_demo/dreamerv3_final_closeout_01/v2_learning_curve.csv
-v2_curve,V2,DreamerV3 V2,550000,5.2990,4.3702,6.3603,0.35,0.15,0.90,20,V2 nominal frozen cohort,not comparable to V1,private ergocub_v2_demo/dreamerv3_final_closeout_01/v2_learning_curve.csv
+series,version,policy,driver_steps,mean_survival_s,ci95_low_s,ci95_high_s,survival5_rate,survival10_rate,qualified_reaching_rate,n,cohort,cohort_comparability,evidence_id
+v1_matched,V1,DreamerV3 control,300000,4.4472,4.1234,4.7928,0.24,0.00,1.00,50,matched policy seeds 50-99,within-series only,E004-final-matched-50
+v1_matched,V1,DreamerV3 control,500000,7.7387,7.0149,8.4241,0.84,0.42,1.00,50,matched policy seeds 50-99,within-series only,E004-final-matched-50
+prior10_progression,Prior10,Prior10,500000,8.6061,8.2936,8.9062,0.875,0.635,1.00,200,reused policy seeds 100-299,within-series only,E004-1M-matched-200
+prior10_progression,Prior10,Prior10,600000,9.3387,9.1619,9.5019,0.995,0.655,1.00,200,reused policy seeds 100-299,within-series only,E004-1M-matched-200
+prior10_progression,Prior10,Prior10,700000,5.2477,4.9865,5.5200,0.430,0.035,1.00,200,reused policy seeds 100-299,within-series only,E004-1M-matched-200
+prior10_progression,Prior10,Prior10,800000,7.7320,7.4689,7.9950,0.900,0.230,1.00,200,reused policy seeds 100-299,within-series only,E004-1M-matched-200
+prior10_progression,Prior10,Prior10,900000,8.7840,8.5434,9.0137,0.955,0.530,1.00,200,reused policy seeds 100-299,within-series only,E004-1M-matched-200
+prior10_progression,Prior10,Prior10,1000000,8.0860,7.7800,8.3820,0.860,0.415,1.00,200,reused policy seeds 100-299,within-series only,E004-1M-matched-200
+v2_curve,V2,DreamerV3 V2,75000,2.1140,2.0065,2.2305,0.00,0.00,0.15,20,V2 nominal frozen cohort,not comparable to V1,V2-closeout-learning-curve
+v2_curve,V2,DreamerV3 V2,110000,4.5765,3.9060,5.3237,0.45,0.00,0.30,20,V2 nominal frozen cohort,not comparable to V1,V2-closeout-learning-curve
+v2_curve,V2,DreamerV3 V2,220000,3.9453,2.7270,5.3676,0.25,0.10,0.25,20,V2 nominal frozen cohort,not comparable to V1,V2-closeout-learning-curve
+v2_curve,V2,DreamerV3 V2,330000,2.8374,2.4816,3.2233,0.00,0.00,0.25,20,V2 nominal frozen cohort,not comparable to V1,V2-closeout-learning-curve
+v2_curve,V2,DreamerV3 V2,440000,4.1544,3.8898,4.4726,0.10,0.00,0.95,20,V2 nominal frozen cohort,not comparable to V1,V2-closeout-learning-curve
+v2_curve,V2,DreamerV3 V2,550000,5.2990,4.3702,6.3603,0.35,0.15,0.90,20,V2 nominal frozen cohort,not comparable to V1,V2-closeout-learning-curve
