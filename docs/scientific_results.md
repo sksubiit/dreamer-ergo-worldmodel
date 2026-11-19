@@ -22,3 +22,16 @@ V2 validated named per-joint PD changes and improved nominal actuator tracking a
 ## Interpretation
 
 The completed evidence separates representation, prediction, action ranking, physical feedback, and learning. Improvements in one layer did not uniformly produce improvements in the others. See [representation, prediction, and control](representation_prediction_control.md) for the mechanism-level reading and [limitations](limitations.md) for the inference boundary.
+
+## Later SN001 experiments
+
+- **[Standing and reaching](sn001_standing_reaching.md), 110k, one training seed.**
+  - 20/20 episodes reached the 10 s cap with qualified reaching at both 75k and 110k.
+  - Mean hand error was 14.74 mm and 12.24 mm.
+  - Zero action also survives 10 s but never reaches (70.57 mm), so the learned component is reaching/positioning, not balance.
+  - The evaluated checkpoints are the 75k intermediate milestone and the 110k final; no SN001 standing run goes beyond 110k.
+- **[Forward walking](sn001_walking_negative_result.md), two independent training seeds, 200k each: closed negative result.**
+  - Both seeds learned a forward lean over planted feet, with no lift, swing or step in 60 contact-instrumented episodes.
+  - Return was 40.8 and 41.3; COM displacement 0.229 m and 0.278 m.
+  - Offline analyses found no incremental reward for stepping precursors, learned models uninformed about single support, and a valid but rarely triggered 5 mm contact termination.
+  - No single cause is established.

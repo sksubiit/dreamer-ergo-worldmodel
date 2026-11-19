@@ -1,0 +1,316 @@
+{
+  "scope": "Sanitized public summary of SN001 experiments; values copied from private evidence identified in release_manifest.json",
+  "standing_reaching": {
+    "experiment_id": "SN-R110k",
+    "status": "OBSERVED (no formal closure record); assessment PROMISING for nominal reaching, NOT evidence of learned balance",
+    "plant": "sn001_sim_v1: official-source ergoCubSN001 (27 joints, 57.1045 kg), position servos Kp 1000 / actuator Kv 0 / passive damping 2, official box contacts, 500 Hz physics / 50 Hz policy, simulation-only experimental effort caps",
+    "task": "sn001_reference_standing_left_reach_v1: fixed left-palm target 50 mm in front of the reset palm (no jitter), success = palm within 30 mm for 0.5 s with upright/height conditions, 10 s (500-command) cap",
+    "observation": "90-D: 27 joint angles and velocities, projected gravity, root-local linear and angular velocity, root height above floor, target-minus-palm vector, previous action (simulator ground truth; privileged relative to hardware sensing)",
+    "action": "23 normalized joint position references, 50 Hz",
+    "training": {
+      "learner": "DreamerV3 (HumanoidBench cb118903, unmodified)",
+      "training_seed": 0,
+      "driver_steps": 110000,
+      "end_reason": "step_cap",
+      "agent_updates": 6871,
+      "optimizer_successful_steps": {
+        "model": 6870,
+        "actor": 6864,
+        "critic": 6871
+      },
+      "skipped_updates": {
+        "model": 1,
+        "actor": 7,
+        "critic": 0
+      },
+      "all_learning_state_finite": true,
+      "lineage": "fresh relaunch from scratch after a first launch stopped at driver step 79 on a reporting diagnostic; the stopped run was not used for initialization or evaluation",
+      "training_replay": {
+        "records": 110000,
+        "episodes_started": 222,
+        "terminal_steps": 4,
+        "note": "4 terminal (fall/guard) steps in 110,000 training records, all in the first ~12.6k steps; every other training episode reached the 10 s cap or a logging boundary. The untrained policy already survives, consistent with the zero-action baseline."
+      }
+    },
+    "checkpoints": {
+      "75k": {
+        "driver_step": 75000,
+        "sha256": "e2408378c985756527e9f33c2c0d15ef04b504dc57ae1fd0ccd827061cbe7b5c",
+        "optimizer_steps": {
+          "model": 4682,
+          "actor": 4677,
+          "critic": 4683
+        }
+      },
+      "110k": {
+        "driver_step": 110000,
+        "sha256": "3d8267e3a0fd7e0d30f27324371366993ef73619fe6e284a0695c45709c4af71",
+        "optimizer_steps": {
+          "model": 6870,
+          "actor": 6864,
+          "critic": 6871
+        }
+      }
+    },
+    "evaluation_protocol": "20 independent stochastic-policy seeds (1000-1019) per checkpoint, nominal reset, fixed target, CPU, 0 optimizer updates, checkpoint hashes unchanged",
+    "results": {
+      "75k": {
+        "n": 20,
+        "evaluation_seeds": "1000-1019",
+        "mean_survival_s": 10.0,
+        "endings": {
+          "timeout": 20
+        },
+        "survival_10s_rate": 1.0,
+        "survival_10s_wilson95": [
+          0.839,
+          1.0
+        ],
+        "qualified_reaching_rate": 1.0,
+        "qualified_at_endpoint_rate": 1.0,
+        "mean_max_continuous_dwell_s": 9.343,
+        "mean_hand_error_mm": 14.74,
+        "first_second_hand_error_mm": 22.63,
+        "mean_return": 2149.5,
+        "both_feet_loaded_fraction": 1.0,
+        "mean_peak_abs_root_pitch_deg": 3.08,
+        "actuator_saturation_fraction": 0.0278
+      },
+      "110k": {
+        "n": 20,
+        "evaluation_seeds": "1000-1019",
+        "mean_survival_s": 10.0,
+        "endings": {
+          "timeout": 20
+        },
+        "survival_10s_rate": 1.0,
+        "survival_10s_wilson95": [
+          0.839,
+          1.0
+        ],
+        "qualified_reaching_rate": 1.0,
+        "qualified_at_endpoint_rate": 1.0,
+        "mean_max_continuous_dwell_s": 9.445,
+        "mean_hand_error_mm": 12.24,
+        "first_second_hand_error_mm": 25.03,
+        "mean_return": 2167.2,
+        "both_feet_loaded_fraction": 0.9992,
+        "mean_peak_abs_root_pitch_deg": 3.26,
+        "actuator_saturation_fraction": 0.0198
+      }
+    },
+    "paired_110k_minus_75k": {
+      "max_dwell_s": {
+        "diff": 0.102,
+        "ci95": [
+          -0.243,
+          0.435
+        ]
+      },
+      "mean_hand_error_mm": {
+        "diff": -2.5,
+        "ci95": [
+          -3.47,
+          -1.55
+        ]
+      },
+      "first_second_hand_error_mm": {
+        "diff": 2.4,
+        "ci95": [
+          1.15,
+          3.66
+        ]
+      },
+      "return_": {
+        "diff": 17.7,
+        "ci95": [
+          7.5,
+          27.8
+        ]
+      },
+      "note": "paired matched-seed bootstrap, 20,000 resamples; marginal, not multiplicity-adjusted; one training seed"
+    },
+    "baselines": {
+      "zero_action_10s": {
+        "episodes": 1,
+        "ending": "timeout",
+        "duration_s": 10.0,
+        "qualified_success": false,
+        "max_dwell_s": 0.0,
+        "mean_hand_error_mm": 70.57,
+        "return_": 1390.3,
+        "note": "one deterministic episode; protocol written before the run"
+      },
+      "nominal_hold_common_5s": {
+        "root_pitch_rms_deg": 2.435,
+        "com_xy_peak_drift_mm": 33.67,
+        "policy_75k": {
+          "root_pitch_rms_deg": 1.842,
+          "com_xy_peak_drift_mm": 22.19
+        },
+        "policy_110k": {
+          "root_pitch_rms_deg": 1.982,
+          "com_xy_peak_drift_mm": 25.3
+        },
+        "note": "saved 5 s nominal-hold trial from the readiness checks; within that window only"
+      }
+    },
+    "kinematic_decomposition": {
+      "joint_dependent_palm_displacement_mm": {
+        "75k": 5.5,
+        "110k": 3.96
+      },
+      "note": "most hand approach is whole-base positioning/lean; copied from the task-validity audit (kinematic decomposition, not a counterfactual)"
+    },
+    "checkpoint_scope": {
+      "intermediate": "75,000 driver steps (the only saved intermediate milestone; e2408378...)",
+      "final": "110,000 driver steps (3d8267e3...)",
+      "beyond_110k": "no SN001 standing/reaching run beyond 110,000 steps exists; the 200,000-step SN001 runs are the two walking seeds, on a different plant (Motor V2 contract) and task",
+      "milestone_dating": "training episodes reach the 10 s cap from the first episodes, so no survival or balance milestone can be dated; training score rises until about 70-80k and then plateaus"
+    },
+    "best_defensible_demonstration": "110k final checkpoint (3d8267e3...) as the final model; 75k is equivalent on survival and reaching incidence and better on first-second error, so neither strictly dominates.",
+    "v2_matched_budget": {
+      "v2_75k": {
+        "mean_survival_s": 2.114,
+        "qualified_reaching": "15%"
+      },
+      "v2_110k": {
+        "mean_survival_s": 4.577,
+        "qualified_reaching": "30%"
+      },
+      "note": "descriptive only: different plant (V2 servos do not hold the robot under zero action), cohorts and task packages"
+    },
+    "clip": {
+      "seed": 1000,
+      "checkpoint": "110k",
+      "selection": "first seed of the cohort (seed index 1000), chosen by the identity audit before this release",
+      "rank_mean_hand_error": "1 of 20 (lowest)",
+      "rank_return": "1 of 20 (highest)",
+      "max_dwell_s": 9.7,
+      "mean_hand_error_mm": 9.3,
+      "ending": "timeout"
+    }
+  },
+  "walking": {
+    "experiment_id": "SN-WALK-2SEED",
+    "status": "CLOSED (no walking demonstrated)",
+    "plant": "sn001_sim_v2 Motor V2 contract candidate on the official SN001 geometry: 23 servos Kp 25.266 / Kd 2.011, armature 0.01, effort caps 60/110/17/20 Nm, passive neck/camera, implicitfast 2 ms x 10; NOT the sn001_sim_v1 standing plant",
+    "task": "sn001_walking_v3: forward COM speed reward saturating at 0.2 m/s while upright and loaded, small effort and slip penalties, -1 on fall, no survival term; Event V3 terminals (height < 0.8, tilt > 30 deg, joint > 0.01 rad beyond range, any contact deeper than 5 mm); 500-command cap",
+    "observation": "88-D: joint angles and velocities, projected gravity, root-local linear and angular velocity, root height above floor, speed command, previous action (simulator ground truth; no contact sensing)",
+    "seeds": {
+      "seed0": {
+        "training_seed": 0,
+        "lineage": "pilot 0 -> 10,000 steps (from scratch, completed); continuation 10,000 -> about 80,100, interrupted externally (machine restart); verified recovery from the 80,100-step checkpoint to 200,000 (completed)",
+        "optimizer_updates": {
+          "world_model": 12497,
+          "critic": 12497,
+          "actor": 12488,
+          "skipped_actor": 9
+        },
+        "final_checkpoint_sha256": "9bc3f87c5b3663e397be9d55bb2ae2ae1e71c80958b85d923cdddf11cadea9f2"
+      },
+      "seed2": {
+        "training_seed": 2,
+        "lineage": "0 -> 200,000 steps from scratch, uninterrupted; no inherited weights or replay",
+        "optimizer_updates": {
+          "world_model": 12496,
+          "critic": 12496,
+          "actor": 12486,
+          "skipped_actor": 10
+        },
+        "final_checkpoint_sha256": "41ab805ee5713c9c4f80d85aa6a56df5a66d04a304d7575e6534a708cfb22803"
+      }
+    },
+    "evaluation_protocol": "30 stochastic episodes per seed, evaluation sampling seed 0, deterministic reset, CPU, 0 updates, MuJoCo contact forces at every 2 ms substep",
+    "results": {
+      "seed0": {
+        "length_commands": 66.9,
+        "length_sd": 13.0,
+        "survival_s_upper": 1.34,
+        "return_": 40.802,
+        "return_sd": 8.1,
+        "com_displacement_m": 0.229,
+        "com_speed_mps": 0.17,
+        "endings": {
+          "tilt": 8,
+          "joint_range": 22
+        },
+        "double_support_share": 0.9992,
+        "weight_transfer_share": 0.324,
+        "longest_single_support_ms": 2.0,
+        "max_clearance_mm": 1.02,
+        "swing_touchdown_episodes": 0,
+        "com_outside_support_before_end_s": 0.44
+      },
+      "seed2": {
+        "length_commands": 69.133,
+        "length_sd": 4.3,
+        "survival_s_upper": 1.38,
+        "return_": 41.278,
+        "return_sd": 2.0,
+        "com_displacement_m": 0.278,
+        "com_speed_mps": 0.204,
+        "endings": {
+          "tilt": 27,
+          "joint_range": 3
+        },
+        "double_support_share": 0.9993,
+        "weight_transfer_share": 0.03,
+        "longest_single_support_ms": 10.0,
+        "max_clearance_mm": 0.96,
+        "swing_touchdown_episodes": 0,
+        "com_outside_support_before_end_s": 0.46
+      }
+    },
+    "zero_action_collapse_commands": 24,
+    "predictions_seed2": {
+      "P1": "HOLDS",
+      "P2_primary_means": "HOLDS",
+      "P2_secondary_maxima": "HOLDS",
+      "P3": "FALSIFIED"
+    },
+    "q1": {
+      "lean_reward_per_command": 0.6,
+      "weight_transfer_vs_double_support_seed0": [
+        0.604,
+        0.613
+      ],
+      "stationary_lift_reward_per_command": [
+        0.085,
+        0.1
+      ],
+      "note": "the reward pays forward COM speed only; no incremental payment for contact transitions; a forward step was never constructed"
+    },
+    "q2": {
+      "auroc_lift_states": {
+        "seed0": 0.66,
+        "seed2": 0.61
+      },
+      "registered_threshold": 0.75,
+      "single_support_ood_share": "100% for both models",
+      "own_lean_reward_correlation": [
+        0.93,
+        0.95
+      ],
+      "note": "predictions are uninformed where stepping would begin; causal role not identifiable offline; imagined action rankings not measured"
+    },
+    "q3": {
+      "numerical_invalidity_events": 0,
+      "diagnostic_substeps": "1.52 M",
+      "controlled_touchdowns_above_5mm": "0 of 1,313",
+      "touchdown_type_training_terminals": {
+        "seed0": 6,
+        "seed2": 13
+      },
+      "note": "valid physical event of low incidence; one policy toe-corner touchdown crossed it"
+    },
+    "diagnostic_lift": {
+      "single_support_ms": 280,
+      "clearance_mm": 13,
+      "success": "2 of 6,000 real-plant search rollouts",
+      "controller": "hand-designed, true-state feedback (not a learned policy)",
+      "note": "stationary left-foot lift; NOT a forward step or a gait"
+    },
+    "attribution": "No single cause isolated among plant/interface feasibility, task incentives, DreamerV3 learning and simulation infrastructure; incentives have the strongest explanatory (not interventional) support. No comparator learner was trained."
+  }
+}

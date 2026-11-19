@@ -1,5 +1,35 @@
-Original showcase content
-=========================
+Licensing overview
+==================
+
+This repository contains two kinds of material under different licenses.
+
+1. Original project contributions: MIT License (below). This covers the
+   scripts, configuration files, documentation, sanitized analysis data
+   (analysis/), generated figures (assets/figures/) and rendered media
+   (assets/demo/) created by the project contributors.
+
+2. Bundled third-party robot model: BSD-3-Clause, NOT relicensed. The
+   directory assets/ergocub/ contains the ergoCubSN001 URDF and its meshes,
+   copied byte-for-byte from https://github.com/mesh-iit/ergocub-software at
+   revision 6c255e258cd184e91765b607222b6b6877bf7459. Copyright (c) 2022,
+   iCub Tech. These files remain under their BSD-3-Clause license. The
+   complete notice is in assets/ergocub/LICENSE, the attribution and
+   adaptation notes are in assets/ergocub/NOTICE, and per-file SHA-256
+   digests are in assets/ergocub/provenance.json. The MIT grant below does
+   not apply to them.
+
+Rendered media in assets/demo/ and the poster figures depict that ergoCubSN001
+model. The project's own simulation and rendering are MIT-licensed; the depicted
+robot design remains attributed to iCub Tech under the BSD-3-Clause notice
+reproduced at the end of this file.
+
+External dependencies that are not bundled, such as the HumanoidBench DreamerV3
+implementation, MuJoCo and the Python packages listed in configs/, are obtained
+separately and remain under their own licenses.
+
+
+Original project contributions
+==============================
 
 MIT License
 
@@ -23,18 +53,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-Third-party attribution: ergoCub robot appearance in rendered media
-==================================================================
 
-The recordings depict the public ergoCubSN001 model from:
-https://github.com/mesh-iit/ergocub-software
+Third-party notice: ergoCubSN001 model (assets/ergocub/)
+=========================================================
+
+Source: https://github.com/mesh-iit/ergocub-software
 Revision: 6c255e258cd184e91765b607222b6b6877bf7459
 Original model: urdf/ergoCub/robots/ergoCubSN001/model.urdf
 
-No robot model, meshes, or third-party code are included in this showcase.
-The MIT grant above applies to original showcase contributions and does not
-relicense third-party material. The robot source's BSD notice is retained
-below for attribution. Referenced projects retain their respective licenses.
+The BSD notice below is reproduced from assets/ergocub/LICENSE for
+attribution. It governs the bundled model and meshes, not the MIT-licensed
+project contributions above.
 
 BSD 3-Clause License
 

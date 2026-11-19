@@ -29,3 +29,16 @@ Frozen-policy evaluation, E1 probes, E2 prediction, E3 ranking/feedback, E4 cont
 Fresh end-to-end training, independent training-seed uncertainty, and raw evaluation campaigns are not claimed. Full checkpoints, replay buffers, private logs, credentials, machine-specific paths, and unpublished trajectories are deliberately excluded.
 
 Do not put checkpoints, replay, logs, virtual environments, or datasets in this repository. Asset provenance is recorded in `assets/ergocub/provenance.json`; third-party notices remain in `assets/ergocub/NOTICE` and `assets/ergocub/LICENSE`. Public derived-artifact hashes and evidence identifiers are recorded in `analysis/public_provenance.json`.
+
+## SN001 experiments
+
+| Artifact | Public | Notes |
+| --- | --- | --- |
+| Sanitized SN001 results | yes | [`analysis/sn001_results.json`](../analysis/sn001_results.json) |
+| Claim-to-evidence map with SHA-256 of private evidence files | yes | [`analysis/release_manifest.json`](../analysis/release_manifest.json) |
+| Three clips and two poster figures | yes | Hashes in [`analysis/video_manifest.json`](../analysis/video_manifest.json); posters regenerate with `python scripts/make_sn001_posters.py` |
+| Checkpoints (75k, 110k, two 200k walking) | no | SHA-256 listed in the release manifest for identity checks if released later |
+| SN001 plant, task, walking runner and analysis code | no | Not part of this release; needs separate code and licence review |
+| Replay, trajectories, per-substep contact logs, probe outputs | no | Private |
+
+The SN001 numbers can therefore be **inspected and traced but not re-derived** from this repository. Re-running any SN001 evaluation requires the unreleased plant code and checkpoints.

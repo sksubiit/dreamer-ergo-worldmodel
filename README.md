@@ -18,6 +18,11 @@ closed-loop correction (E3), explicit control integration (E4), and a V2
 control-interface/training comparison. The evidence supports useful local
 mechanistic findings, but not a generally reliable humanoid controller.
 
+A later phase moved to an official-source SN001 plant. It adds a standing and
+reaching result at 110k steps, and a closed two-seed forward-walking study at
+200k steps whose result is negative: no stepping. See
+[SN001 results](#sn001-results-later-phase) below.
+
 Read the [research overview](docs/scientific_results.md) for the compact
 results narrative, then the [reproducibility guide](docs/reproducibility.md)
 for the boundary between checks supported by this repository and analyses
@@ -102,6 +107,67 @@ the 550k frozen checkpoint; see [video_manifest.json](analysis/video_manifest.js
 for the checkpoint hash, file hashes, outcomes, and the warning that a latched
 event is not sustained balance. Public artifact hashes and evidence identifiers
 are collected in [public_provenance.json](analysis/public_provenance.json).
+
+## SN001 results (later phase)
+
+These experiments use two newer plants built from the official ergoCubSN001
+sources (model revision `6c255e2`). Neither plant is the V1/V2 plant above,
+and the two differ from each other. Results are therefore not comparable
+across sections as controlled experiments. Each section below has one training
+lineage per run, simulation only and privileged state observations.
+
+### Standing and left-hand reaching, 110k ([details](docs/sn001_standing_reaching.md))
+
+[![SN001 110k standing and reaching](assets/figures/sn001-110k-stand-reach.png)](assets/demo/sn001-110k-seed-1000-stand-reach.mp4)
+
+*Reset, middle and final frames of the 110k seed-1000 clip (re-rendered recorded states).*
+
+| Frozen checkpoint (n = 20, seeds 1000–1019) | 10 s survival | Qualified reaching | Mean max dwell | Mean hand error |
+| --- | ---: | ---: | ---: | ---: |
+| 75k | 20/20 | 20/20 | 9.343 s | 14.74 mm |
+| 110k | 20/20 | 20/20 | 9.445 s | 12.24 mm |
+| Zero action (1 deterministic episode) | survives | never | 0 s | 70.57 mm |
+
+On this stiff-servo plant, **zero action also stands for 10 s**, so learned
+balance is not demonstrated. What is learned is reliable near-target hand
+positioning, mostly by whole-base positioning toward a fixed target 5 cm away.
+The evaluated checkpoints are the 75k intermediate milestone and the 110k
+final; no SN001 standing run goes beyond 110k. The clip re-renders recorded evaluation states. Its seed (1000) is the first of
+the cohort and also its best episode.
+
+### Forward walking, two training seeds, 200k each: negative result ([details](docs/sn001_walking_negative_result.md))
+
+[![SN001 walking seeds 0 and 2 at 200k](assets/figures/sn001-walking-200k-forward-lean.png)](assets/demo/sn001-walking-seed2-200k-forward-lean.mp4)
+
+*First, middle and last frames of evaluation episode 2: seed 0 on the top row, seed 2 on the bottom row. The walking clips play at half real-time speed with a pelvis-tracking camera.*
+
+| 30 stochastic episodes per seed | Length | Return | COM displacement | Both feet in contact | Steps |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Training seed 0 (interrupted, recovered) | 1.34 s | 40.8 | 0.229 m | 99.92% of substeps | 0 |
+| Training seed 2 (uninterrupted) | 1.38 s | 41.3 | 0.278 m | 99.93% of substeps | 0 |
+
+Both independent runs learned the same behaviour: a controlled forward lean
+over planted feet, with no foot lift, swing or step.
+
+Offline analyses found three things:
+- **Reward.** The reward pays the lean immediately and pays nothing extra for
+  stepping precursors.
+- **Learned models.** Both world models are uninformed about single support.
+- **Contact termination.** The 5 mm contact termination is valid and rarely
+  triggered.
+
+No single cause is established. The result does not show that DreamerV3
+cannot learn to walk this robot, because no other learner was trained on the
+task. A diagnostic stationary foot lift by a privileged controller shows small
+lifts are feasible; it is not a step or a gait. Clips:
+[seed 0](assets/demo/sn001-walking-seed0-200k-forward-lean.mp4),
+[seed 2](assets/demo/sn001-walking-seed2-200k-forward-lean.mp4).
+
+Platform comparison: [V1, V2 and SN001](docs/v1_v2_comparison.md#sn001-platforms).
+Sanitized values: [`analysis/sn001_results.json`](analysis/sn001_results.json).
+Claim-to-evidence map: [`analysis/release_manifest.json`](analysis/release_manifest.json).
+Hierarchical control (PPO low level, DreamerV3 high level, motion
+retargeting, later TD-MPC2) is a separate, proposed direction with no results.
 
 ## Reproducibility boundary
 

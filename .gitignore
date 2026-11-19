@@ -18,12 +18,17 @@
 !/assets/demo/reaching-balance-500k.mp4
 !/assets/demo/v2-550k-seed-1002-timeout.mp4
 !/assets/demo/v2-550k-seed-1007-fall.mp4
+!/assets/demo/sn001-110k-seed-1000-stand-reach.mp4
+!/assets/demo/sn001-walking-seed0-200k-forward-lean.mp4
+!/assets/demo/sn001-walking-seed2-200k-forward-lean.mp4
 /assets/figures/*
 !/assets/figures/survival-comparison.png
 !/assets/figures/action-ranking.png
 !/assets/figures/system-architecture.svg
 !/assets/figures/learning-curves.png
 !/assets/figures/mechanistic-findings.png
+!/assets/figures/sn001-110k-stand-reach.png
+!/assets/figures/sn001-walking-200k-forward-lean.png
 !/configs/
 !/configs/*.in
 !/configs/*.lock
@@ -58,3 +63,6 @@ grand_philosophy/
 AGENTS.md
 !assets/demo/v2-550k-seed-1002-timeout.mp4
 !assets/demo/v2-550k-seed-1007-fall.mp4
+!assets/demo/sn001-110k-seed-1000-stand-reach.mp4
+!assets/demo/sn001-walking-seed0-200k-forward-lean.mp4
+!assets/demo/sn001-walking-seed2-200k-forward-lean.mp4

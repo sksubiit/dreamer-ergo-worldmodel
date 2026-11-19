@@ -8,24 +8,43 @@
     "E1-final-representation",
     "E2-recovery-verification",
     "E3-closed-loop-execution-01",
-    "E4-BLF-commissioning"
+    "E4-BLF-commissioning",
+    "SN-R110k-eval-comparison",
+    "SN-R110k-zero-action-10s",
+    "SN-R110k-task-validity",
+    "WALK-closeout-final-report",
+    "WALK-seed-comparison",
+    "WALK-prediction-verdicts",
+    "WALK-Q1-reward",
+    "WALK-Q2-probe",
+    "WALK-Q3-penetration",
+    "WALK-feasibility"
   ],
   "generation_commands": [
     "python3 scripts/plot_learning_curves.py --output assets/figures/learning-curves.png",
-    "python3 scripts/plot_mechanistic_findings.py --output assets/figures/mechanistic-findings.png"
+    "python3 scripts/plot_mechanistic_findings.py --output assets/figures/mechanistic-findings.png",
+    "python3 scripts/make_sn001_posters.py --output-dir assets/figures",
+    "analysis/sn001_results.json, analysis/release_manifest.json and the SN001 entries of analysis/video_manifest.json were generated from private evidence by a private build script (no physics, no policy calls); see analysis/release_manifest.json"
   ],
   "sha256": {
     "analysis/learning_curves.csv": "8dd8fd9d14241836588f518e696ea6a674cd7d9358b2344ec3d79c63c42b4369",
     "analysis/mechanism_summary.json": "839ca2d6c4338893498bc49a50f71319f083c8a8d8c0ce72b3547521646ce0bd",
-    "analysis/video_manifest.json": "426b2c868d8d5a6151fe6989bc9f042be4e0b9a70b402f56cfb59dd590af344f",
+    "analysis/video_manifest.json": "f2a94c1e46a5e078844bf58e0e3c6f3b9ff33815b6f24efdd72e2fef68c3d9f2",
     "assets/figures/learning-curves.png": "1f552a44553fd867df4080c80112d6b37d441e1ae782d1a27969befe6b9e6943",
     "assets/figures/mechanistic-findings.png": "a5d60d5a6798381a998873343b023d452e49ff566643944c5ba0ffa1dedf9b2e",
     "assets/demo/v2-550k-seed-1002-timeout.mp4": "4593762d8a79cee1549b5d5f038c95210cc587454c74d868f97a738b46ce4f89",
-    "assets/demo/v2-550k-seed-1007-fall.mp4": "faad7fd309a51b966d5bd15d94334dae32fe2c49fac79bd706f89f068706818a"
+    "assets/demo/v2-550k-seed-1007-fall.mp4": "faad7fd309a51b966d5bd15d94334dae32fe2c49fac79bd706f89f068706818a",
+    "analysis/sn001_results.json": "7bfdb79d0542c67b75fb880cebcd8fe06701f580543183b50e7a22e77357e663",
+    "analysis/release_manifest.json": "f93907d45e937ab6df22a11dfd57eb1fc3ab4b86e6db9b2a7f31fb7acc34811b",
+    "assets/demo/sn001-110k-seed-1000-stand-reach.mp4": "a4cc552e111220ec24feb6113271d3df46d9e8cde2c035694e308187d8fa0c8b",
+    "assets/demo/sn001-walking-seed0-200k-forward-lean.mp4": "210c0b43a1e16191d47adc42f1d2fed3f205e25a5902b974bd67b99d1ff93b31",
+    "assets/demo/sn001-walking-seed2-200k-forward-lean.mp4": "19c48ed1409763acb7a26a2f34730db4e1d9b56a0936a163e5c74c40b4e42165",
+    "assets/figures/sn001-110k-stand-reach.png": "064668f1eaaae30ab2316a2b624fb540342c6974e0cb172c4cd1271d867c317f",
+    "assets/figures/sn001-walking-200k-forward-lean.png": "ad13ec55dcdbaa0befa68812f721fcc11706a21b67ff10765d40cd5ada9e3f2a"
   },
   "licenses": {
     "robot_assets": "BSD-3-Clause notice retained in assets/ergocub/",
     "generated_data_figures_and_metadata": "Repository LICENSE",
-    "videos": "Derived from the project's own frozen simulation evaluation; no third-party media included"
+    "videos": "Derived from the project's own simulation of the public ergoCubSN001 model (BSD-3-Clause notice in assets/ergocub/); no third-party media included"
   }
 }

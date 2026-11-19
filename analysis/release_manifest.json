@@ -1,0 +1,161 @@
+{
+  "scope": "Maps each public SN001 claim to a stable private evidence identifier and the SHA-256 of that private file. Private paths, checkpoints, replay and trajectories are not distributed.",
+  "claims": [
+    {
+      "claim": "SN001 standing/reaching 75k and 110k: 20/20 episodes each reached the 10 s cap",
+      "evidence_id": "SN-R110k-eval-comparison",
+      "evidence_sha256": "e678c541c6688bdb689364f336e3dd91cd6bac4bab9cd64fff986e3fdd699791"
+    },
+    {
+      "claim": "Qualified reaching 100% at both checkpoints; mean max dwell 9.343 / 9.445 s",
+      "evidence_id": "SN-R110k-eval-comparison",
+      "evidence_sha256": "e678c541c6688bdb689364f336e3dd91cd6bac4bab9cd64fff986e3fdd699791"
+    },
+    {
+      "claim": "Mean hand error 14.74 -> 12.24 mm; first-second error 22.63 -> 25.03 mm (+2.40 [1.15, 3.66])",
+      "evidence_id": "SN-R110k-eval-comparison",
+      "evidence_sha256": "e678c541c6688bdb689364f336e3dd91cd6bac4bab9cd64fff986e3fdd699791"
+    },
+    {
+      "claim": "Zero action also reaches the 10 s cap, never qualifies, mean hand error 70.57 mm, return 1390.3",
+      "evidence_id": "SN-R110k-zero-action-10s",
+      "evidence_sha256": "fc54fc500446964bc6e2bae9250d5bd1add7703701f8c31a7a231152f2506ea5"
+    },
+    {
+      "claim": "Joint-dependent palm displacement only 5.50 / 3.96 mm: hand approach is mostly whole-base positioning",
+      "evidence_id": "SN-R110k-task-validity",
+      "evidence_sha256": "534a2c14eb66f80215ad7816fc3534672742e89e17c6ca1aacc3ac42b69838ce"
+    },
+    {
+      "claim": "Training: 110,000 driver steps, 6,871 updates, 1/7/0 skipped model/actor/critic, all state finite; first launch stopped at step 79 and was excluded",
+      "evidence_id": "SN-R110k-run-completion",
+      "evidence_sha256": "169e04d7556c4c20a99070b806f21f27fa0fbb224afbf8c4a2285c648097c457"
+    },
+    {
+      "claim": "Evaluated checkpoints: 75k intermediate milestone and 110k final; no SN001 standing run beyond 110k",
+      "evidence_id": "SN-R110k-checkpoint-verification",
+      "evidence_sha256": "10dc2ddb8f9c645b4394e514167d7b4d64c32e64c5561bdfff05743d20501f5c"
+    },
+    {
+      "claim": "Walking seeds 0 and 2: no lift, swing, touchdown or step in 60 contact-instrumented episodes",
+      "evidence_id": "WALK-seed-comparison",
+      "evidence_sha256": "e66263f186b434c41e400e7fa3c9d8241c22cd4a6ac7a0cbc0d67a4b289aa391"
+    },
+    {
+      "claim": "Walking length 66.9 / 69.1 commands, return 40.8 / 41.3, COM 0.229 / 0.278 m",
+      "evidence_id": "WALK-seed-comparison",
+      "evidence_sha256": "e66263f186b434c41e400e7fa3c9d8241c22cd4a6ac7a0cbc0d67a4b289aa391"
+    },
+    {
+      "claim": "Seed-2 predictions: P1 holds, P2 holds (means and maxima), P3 falsified",
+      "evidence_id": "WALK-prediction-verdicts",
+      "evidence_sha256": "d62b27122aa1fca9385e776a4f1f072c43404269fcd74105b71c08b48c831e86"
+    },
+    {
+      "claim": "Q1: lean 0.60/command; transfer 0.604 vs 0.613; stationary lifts 0.085-0.10",
+      "evidence_id": "WALK-Q1-reward",
+      "evidence_sha256": "d1168e2563dd1b3f3b398ab9749500efd414430a4ae90b5f88a477ee45850306"
+    },
+    {
+      "claim": "Q2: AUROC 0.66 / 0.61 vs 0.75; single support 100% OOD",
+      "evidence_id": "WALK-Q2-probe",
+      "evidence_sha256": "0e2e292d4ec0dbc9eddeab5e2b1bd5ad04779b9a595c7864238b93f39714ee22"
+    },
+    {
+      "claim": "Q3: 0 numerical events; 0/1,313 controlled touchdowns above 5 mm; 6/13 touchdown terminals in training",
+      "evidence_id": "WALK-Q3-penetration",
+      "evidence_sha256": "a3c222a143fcc9cd89edf123bc47a6edb8af4d0a777dda328e798736ff564ab5"
+    },
+    {
+      "claim": "Diagnostic stationary left lift: 280 ms, 13 mm, 2/6,000 rollouts; not a step",
+      "evidence_id": "WALK-feasibility",
+      "evidence_sha256": "38dec8dfc538720953bca1e636cfdfbd09e4d1043f63c021028f35d3a3104c1f"
+    }
+  ],
+  "evidence": {
+    "SN-R110k-checkpoint-verification": {
+      "sha256": "10dc2ddb8f9c645b4394e514167d7b4d64c32e64c5561bdfff05743d20501f5c"
+    },
+    "SN-R110k-clip-seed1000": {
+      "sha256": "a4cc552e111220ec24feb6113271d3df46d9e8cde2c035694e308187d8fa0c8b"
+    },
+    "SN-R110k-common5s-baseline": {
+      "sha256": "e0355a2b175bf7247331cb47994e9dac1b574a6ff3bece88bdd3c22936ddb10d"
+    },
+    "SN-R110k-environment-contract": {
+      "sha256": "64fea8726705f7daceb789c77430a3b5a7f0103385f1ef44fe9ddcb74df02b5d"
+    },
+    "SN-R110k-eval-comparison": {
+      "sha256": "e678c541c6688bdb689364f336e3dd91cd6bac4bab9cd64fff986e3fdd699791"
+    },
+    "SN-R110k-run-completion": {
+      "sha256": "169e04d7556c4c20a99070b806f21f27fa0fbb224afbf8c4a2285c648097c457"
+    },
+    "SN-R110k-step79-stop": {
+      "sha256": "d24ea1c87f2801428fb5aca183cd2ca0a4830daaa11ad8af5d9c38b115a4029d"
+    },
+    "SN-R110k-task-validity": {
+      "sha256": "534a2c14eb66f80215ad7816fc3534672742e89e17c6ca1aacc3ac42b69838ce"
+    },
+    "SN-R110k-training-scores": {
+      "sha256": "fdca33f2c9695b3c603a3fda6767255ceaaec0701cad0b8d29cdf4af3b44ff16"
+    },
+    "SN-R110k-zero-action-10s": {
+      "sha256": "fc54fc500446964bc6e2bae9250d5bd1add7703701f8c31a7a231152f2506ea5"
+    },
+    "V2-matched-75k-110k": {
+      "sha256": "1e061b1d6f49a4bbf5897b3796ac7e31f624760897a43f7101c2e99f3240db76"
+    },
+    "WALK-Q1-reward": {
+      "sha256": "d1168e2563dd1b3f3b398ab9749500efd414430a4ae90b5f88a477ee45850306"
+    },
+    "WALK-Q2-probe": {
+      "sha256": "0e2e292d4ec0dbc9eddeab5e2b1bd5ad04779b9a595c7864238b93f39714ee22"
+    },
+    "WALK-Q3-penetration": {
+      "sha256": "a3c222a143fcc9cd89edf123bc47a6edb8af4d0a777dda328e798736ff564ab5"
+    },
+    "WALK-clip-seed0-ep02": {
+      "sha256": "210c0b43a1e16191d47adc42f1d2fed3f205e25a5902b974bd67b99d1ff93b31"
+    },
+    "WALK-clip-seed2-ep02": {
+      "sha256": "19c48ed1409763acb7a26a2f34730db4e1d9b56a0936a163e5c74c40b4e42165"
+    },
+    "WALK-closeout-final-report": {
+      "sha256": "70e8d821208b02e0d4f99795cd7e24faf794efc0e6dbe0315a379d6143908d71"
+    },
+    "WALK-evidence-manifest": {
+      "sha256": "b6b45df325d88eadf61e31d3cb0879752823d583f49fd465b5d9077418054be1"
+    },
+    "WALK-feasibility": {
+      "sha256": "38dec8dfc538720953bca1e636cfdfbd09e4d1043f63c021028f35d3a3104c1f"
+    },
+    "WALK-prediction-verdicts": {
+      "sha256": "d62b27122aa1fca9385e776a4f1f072c43404269fcd74105b71c08b48c831e86"
+    },
+    "WALK-seed-comparison": {
+      "sha256": "e66263f186b434c41e400e7fa3c9d8241c22cd4a6ac7a0cbc0d67a4b289aa391"
+    },
+    "WALK-task-incentive-report": {
+      "sha256": "b4383ba6656d462e7b227da5338abdf5ede96a420929f6df3df089d191c55aad"
+    }
+  },
+  "checkpoints": {
+    "sn001_standing_75k": "e2408378c985756527e9f33c2c0d15ef04b504dc57ae1fd0ccd827061cbe7b5c",
+    "sn001_standing_110k": "3d8267e3a0fd7e0d30f27324371366993ef73619fe6e284a0695c45709c4af71",
+    "walking_seed0_200k": "9bc3f87c5b3663e397be9d55bb2ae2ae1e71c80958b85d923cdddf11cadea9f2",
+    "walking_seed2_200k": "41ab805ee5713c9c4f80d85aa6a56df5a66d04a304d7575e6534a708cfb22803",
+    "availability": "not distributed (private); hashes allow identity checks if released later"
+  },
+  "media": {
+    "assets/demo/sn001-110k-seed-1000-stand-reach.mp4": "a4cc552e111220ec24feb6113271d3df46d9e8cde2c035694e308187d8fa0c8b",
+    "assets/demo/sn001-walking-seed0-200k-forward-lean.mp4": "210c0b43a1e16191d47adc42f1d2fed3f205e25a5902b974bd67b99d1ff93b31",
+    "assets/demo/sn001-walking-seed2-200k-forward-lean.mp4": "19c48ed1409763acb7a26a2f34730db4e1d9b56a0936a163e5c74c40b4e42165"
+  },
+  "rights": {
+    "robot_model": "ergoCubSN001 from mesh-iit/ergocub-software 6c255e2, BSD-3-Clause, notice retained in assets/ergocub/",
+    "media": "renders of the project's own simulation runs of that model; no third-party footage",
+    "data": "sanitized summaries under the repository LICENSE"
+  },
+  "generated_by": "private build script (no physics, no policy calls, no training)"
+}
